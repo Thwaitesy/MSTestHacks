@@ -17,26 +17,33 @@ A runtime data driven test as opposed to compile time. Just point your datasourc
 
 Getting Started
 ==========================================================================
-**1 >** [Install NuGet](http://docs.nuget.org/docs/start-here/installing-nuget). Then, install MSTestHacks from the package manager console:
-```
+**1)** [Install NuGet](http://docs.nuget.org/docs/start-here/installing-nuget). Then, install MSTestHacks from the package manager console:
+```csharp
 PM> Install-Package MSTestHacks
 ``` 
 
-**2 >** Inherit your test class from `TestBase`
-```
+**2)** Inherit your test class from `TestBase`
+```csharp
 public class UnitTest1 : TestBase
 { }
 ```
 
 ###RuntimeDataSource
-**1 >** Apply `AttachRuntimeDatasources` attribute to your test class, with the type of the class as its parameter. 
+**1)** Add the following connection string to your app.config file
+```xml
+<connectionStrings>
+  <add name="RuntimeDataSource" connectionString="Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\RuntimeDataSource\RuntimeDataSource.mdf;Integrated Security=True;Connect Timeout=30" providerName="System.Data.SqlClient" />
+</connectionStrings>
 ```
+
+**2)** Apply `AttachRuntimeDatasources` attribute to your test class, with the type of the class as its parameter. 
+```csharp
 [AttachRuntimeDataSources(typeof(UnitTest1))]
 public class UnitTest1 : TestBase
 ```
 
-**2 >** Create a Property, Field or Method, that returns IEnumerable<T>
-```
+**3)** Create a Property, Field or Method, that returns IEnumerable<T>
+```csharp
 [AttachRuntimeDataSources(typeof(UnitTest1))]
 public class UnitTest1 : TestBase
 {
@@ -51,39 +58,14 @@ public class UnitTest1 : TestBase
 }
 ```
 
-**3 >** Add the `DataSource` attribute to your test method, pointing back to the IEnumerable<T> name above.
-```
+**4)** Add the `DataSource` attribute to your test method, pointing back to the IEnumerable<T> name above.
+```csharp
 [DataSource("Stuff")]
 public void TestMethod1()
 {
     var number = this.TestContext.GetRuntimeDataSourceObject<int>();
     
     Assert.IsNotNull(number);
-}
-```
-**Full Example**
-```
-[TestClass]
-[AttachRuntimeDataSources(typeof(UnitTest1))]
-public class UnitTest1 : TestBase
-{
-    private IEnumerable<int> Stuff
-    {
-        get
-        {
-            //This could do anything, get a dynamic list from anywhere....
-            return new List<int> { 1, 2, 3 };
-        }
-    }
-    
-    [TestMethod]
-    [DataSource("Stuff")]
-    public void TestMethod1()
-    {
-        var number = this.TestContext.GetRuntimeDataSourceObject<int>();
-        
-        Assert.IsNotNull(number);
-    }
 }
 ```
 
