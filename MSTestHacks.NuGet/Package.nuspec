@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+    <metadata>
+        <id>MSTestHacks</id>
+        <version>0.0.1</version>
+        <title>MSTestHacks</title>
+        <authors>Sam Thwaites</authors>
+        <owners />
+        <licenseUrl>http://opensource.org/licenses/Apache-2.0</licenseUrl>
+        <projectUrl>https://nuget.org/packages/MSTestHacks.NuGet</projectUrl>
+        <iconUrl>https://nuget.org/Content/Images/packageDefaultIcon-50x50.png</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>A bunch of hacks to get around the deficiencies of MSTest.
+
+-&gt; Runtime DataSource</description>
+        <summary>A bunch of hacks to get around the deficiencies of MSTest.</summary>
+        <releaseNotes />
+        <copyright>Copyright 2013</copyright>
+        <language>en-US</language>
+        <dependencies>
+            <group targetFramework=".NETFramework4.5">
+                <dependency id="Newtonsoft.Json" version="5.0.4" />
+            </group>
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="bin\Debug\RuntimeDataSource\RuntimeDataSource.mdf" target="content\RuntimeDataSource\RuntimeDataSource.mdf" />
+        <file src="bin\Debug\RuntimeDataSource\RuntimeDataSource_log.ldf" target="content\RuntimeDataSource\RuntimeDataSource_log.ldf" />
+        <file src="bin\Debug\MSTestHacks.dll" target="lib\net40\MSTestHacks.dll" />
+        <file src="bin\Debug\MSTestHacks.pdb" target="lib\net40\MSTestHacks.pdb" />
+        <file src="tools\init.ps1" target="tools\init.ps1" />
+        <file src="tools\install.ps1" target="tools\install.ps1" />
+        <file src="tools\uninstall.ps1" target="tools\uninstall.ps1" />
+    </files>
+</package>
