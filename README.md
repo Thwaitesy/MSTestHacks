@@ -1,8 +1,8 @@
-[Overview](https://github.com/Thwaitesy/MSTestHacks/edit/master/README.md#overview)   
-[Features](https://github.com/Thwaitesy/MSTestHacks/edit/master/README.md#features)   
-[Roadmap](https://github.com/Thwaitesy/MSTestHacks/edit/master/README.md#roadmap)      
-[Changelog](https://github.com/Thwaitesy/MSTestHacks/edit/master/README.md#changelog)    
-[Licence](https://github.com/Thwaitesy/MSTestHacks/edit/master/README.md#licence)
+[Overview](https://github.com/Thwaitesy/MSTestHacks#overview)   
+[Features](https://github.com/Thwaitesy/MSTestHacks#features)   
+[Roadmap](https://github.com/Thwaitesy/MSTestHacks#roadmap)      
+[Changelog](https://github.com/Thwaitesy/MSTestHacks#changelog)    
+[Licence](https://github.com/Thwaitesy/MSTestHacks#licence)
 
 Overview
 ==========================================================================
