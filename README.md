@@ -1,9 +1,3 @@
-[Overview](https://github.com/Thwaitesy/MSTestHacks#overview)   
-[Features](https://github.com/Thwaitesy/MSTestHacks#features)   
-[Roadmap](https://github.com/Thwaitesy/MSTestHacks#roadmap)      
-[Changelog](https://github.com/Thwaitesy/MSTestHacks#changelog)    
-[Licence](https://github.com/Thwaitesy/MSTestHacks#licence)
-
 Overview
 ==========================================================================
 Just a bunch of hacks to get around the deficiencies of MSTest. 
@@ -79,6 +73,9 @@ Roadmap
 Changelog
 ==========================================================================
 *0.0.2*
+- Simplified NuGet and added project links etc
+
+*0.0.1*
 - Initial release
 
 Licence
