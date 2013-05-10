@@ -2,8 +2,8 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>MSTestHacks</id>
-        <version>0.0.2</version>
-        <title>MSTestHacks</title>
+        <version>1.0.0</version>
+        <title>MSTest Hacks</title>
         <authors>Sam Thwaites</authors>
         <owners>Sam Thwaites</owners>
         <licenseUrl>https://github.com/Thwaitesy/MSTestHacks/blob/master/LICENCE</licenseUrl>
@@ -23,8 +23,6 @@
         </dependencies>
     </metadata>
     <files>
-        <file src="bin\Debug\RuntimeDataSource\RuntimeDataSource.mdf" target="content\RuntimeDataSource\RuntimeDataSource.mdf" />
-        <file src="bin\Debug\RuntimeDataSource\RuntimeDataSource_log.ldf" target="content\RuntimeDataSource\RuntimeDataSource_log.ldf" />
         <file src="bin\Debug\MSTestHacks.dll" target="lib\net40\MSTestHacks.dll" />
         <file src="bin\Debug\MSTestHacks.pdb" target="lib\net40\MSTestHacks.pdb" />
     </files>

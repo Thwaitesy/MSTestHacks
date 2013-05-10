@@ -8,8 +8,6 @@ using System.Threading.Tasks;
 
 namespace MSTestHacks
 {
-    [DeploymentItem(@"RuntimeDataSource\RuntimeDataSource.mdf", "RuntimeDataSource")]
-    [DeploymentItem(@"RuntimeDataSource\RuntimeDataSource_log.ldf", "RuntimeDataSource")]
     public class TestBase : ContextBoundObject
     {
         public TestContext TestContext { get; set; }

@@ -2,6 +2,9 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MSTestHacks.RuntimeDataSource;
 using System.Collections.Generic;
+using System.Xml.Linq;
+using System.Xml;
+using System.Linq;
 
 namespace MSTestHacks.Tests
 {
@@ -9,7 +12,7 @@ namespace MSTestHacks.Tests
     [AttachRuntimeDataSources(typeof(SimpleObjects))]
     public class SimpleObjects : TestBase
     {
-        private IEnumerable<int> Simple
+        public IEnumerable<int> Simple
         {
             get
             {
@@ -17,11 +20,26 @@ namespace MSTestHacks.Tests
             }
         }
 
+        public IEnumerable<int> Simple2
+        {
+            get
+            {
+                return new List<int> { 1, 22, 33 };
+            }
+        }
+
         [TestMethod]
-        [DataSource("Simple")]
+        [DataSource("Simple2")]
         public void TestMethod1()
         {
-            Assert.IsNotNull(this.TestContext.GetRuntimeDataSourceObject<int>());
+            var x = this.TestContext.GetRuntimeDataSourceObject<int>();
+        }
+
+        [TestMethod]
+        [DataSource("Simple")]
+        public void TestMethod12()
+        {
+            var x = this.TestContext.GetRuntimeDataSourceObject<int>();
         }
     }
 }

@@ -5,9 +5,11 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Remoting.Contexts;
+using System.Xml.Linq;
 
 namespace MSTestHacks.RuntimeDataSource
 {
@@ -51,37 +53,36 @@ namespace MSTestHacks.RuntimeDataSource
                             {
                                 Name = attribute.DataSourceSettingName,
                                 ConnectionString = "RuntimeDataSource",
-                                DataTableName = Guid.NewGuid().ToString(),
+                                DataTableName = type.FullName + "." + method.Name,
                                 DataAccessMethod = "Sequential"
                             };
                             section.DataSources.Add(dataSource);
                             configChanged = true;
 
                             //Get the source data
-                            var sourceData = new ProviderReference(type, dataSource.Name).GetInstance();
-                            using (var db = new RuntimeDataSourceDataContext(ConfigurationManager.ConnectionStrings["RuntimeDataSource"].ConnectionString))
+                            var sourceData = new List<object>();
+                            foreach (var x in new ProviderReference(type, dataSource.Name).GetInstance())
                             {
-                                //Add table
-                                var addTableQuery = string.Format(@"IF OBJECT_ID('{0}', 'U') IS NOT NULL
-                                                                        DROP TABLE [{0}]
-                                                                    CREATE TABLE [{0}] 
-                                                                        ([Payload] [varchar](MAX) NOT NULL)", dataSource.DataTableName);
-                                db.ExecuteQuery<object>(addTableQuery);
-
-                                //Insert data
-                                foreach (var data in sourceData)
-                                {
-                                    var json = JsonConvert.SerializeObject(data);
-                                    var insertDataQuery = string.Format(@"INSERT INTO [{0}]
-			                                                                ([Payload]) 
-		                                                                  VALUES ('{1}')",
-                                                                            dataSource.DataTableName, json);
-                                    db.ExecuteQuery<object>(insertDataQuery);
-                                }
-
-                                //Save all changes
-                                db.SubmitChanges();
+                                sourceData.Add(x);
                             }
+
+                            //Create file if not there.
+
+                            if (!File.Exists("RuntimeDataSources.xml"))
+                            {
+                                XDocument x = new XDocument(new XDeclaration("1.0", "utf-8", "true"), new XElement("DataSources"));
+
+                                File.WriteAllText("RuntimeDataSources.xml", x.ToString());
+                            }
+
+                            var document = XDocument.Load("RuntimeDataSources.xml");
+                            document.Element("DataSources").Add(
+
+                                from data in sourceData
+                                select new XElement(dataSource.DataTableName,
+                                       new XElement("Payload", JsonConvert.SerializeObject(data))));
+
+                            document.Save("RuntimeDataSources.xml");
                         }
 
                         if (configChanged)
