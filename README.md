@@ -65,6 +65,7 @@ public void TestMethod1()
 
 Roadmap
 ==========================================================================
+* Inject the ConnectionString automatically
 * Better asserts for exceptions
 * Injection of `AttachRuntimeDataSources` attribute at compile time using PostSharp
 * Injection of `DataSource` attribute at compile time using PostSharp
