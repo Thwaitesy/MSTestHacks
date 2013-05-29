@@ -26,7 +26,7 @@ namespace MSTestHacks.Tests
         [DataSource("Complex")]
         public void TestMethod1()
         {
-            Assert.IsNotNull(this.TestContext.GetRuntimeDataSourceObject<XYZ>());
+            var x = this.TestContext.GetRuntimeDataSourceObject<XYZ>();
         }
     }
 

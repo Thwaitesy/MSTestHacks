@@ -66,23 +66,26 @@ namespace MSTestHacks.RuntimeDataSource
                                 sourceData.Add(x);
                             }
 
-                            //Create file if not there.
+                            //Create the file (if not there)
+                            var fileName = "RuntimeDataSources.xml";
+                            if (!File.Exists(fileName))
+                                File.WriteAllText(fileName, new XDocument(new XDeclaration("1.0", "utf-8", "true"), new XElement("DataSources")).ToString());
 
-                            if (!File.Exists("RuntimeDataSources.xml"))
-                            {
-                                XDocument x = new XDocument(new XDeclaration("1.0", "utf-8", "true"), new XElement("DataSources"));
+                            //Load the file
+                            var doc = XDocument.Load(fileName);
 
-                                File.WriteAllText("RuntimeDataSources.xml", x.ToString());
-                            }
+                            //Remove all elements with the same name
+                            doc.Element("DataSources").Elements(dataSource.DataTableName).Remove();
 
-                            var document = XDocument.Load("RuntimeDataSources.xml");
-                            document.Element("DataSources").Add(
+                            //Add the iterations
+                            doc.Element("DataSources").Add(
 
                                 from data in sourceData
                                 select new XElement(dataSource.DataTableName,
                                        new XElement("Payload", JsonConvert.SerializeObject(data))));
 
-                            document.Save("RuntimeDataSources.xml");
+                            //Save the file
+                            doc.Save(fileName);
                         }
 
                         if (configChanged)
