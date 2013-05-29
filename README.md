@@ -72,6 +72,9 @@ Roadmap
 
 Changelog
 ==========================================================================
+*1.0.1*
+- Fixes the issue with stale iterations. Each run was not getting deleted from the xml file and was building up. 
+
 *1.0.0*
 - Replaced the database backend with an xml one
 - Production Ready
