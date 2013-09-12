@@ -27,13 +27,23 @@ namespace MSTestHacks.RuntimeDataSource
 
                 var appConfig = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
 
+                //If the connectionStrings section doest exist, add it.
+                if (!appConfig.Sections.Cast<ConfigurationSection>().Any(x => x.SectionInformation.Name == "connectionStrings"))
+                {
+                    appConfig.Sections.Add("connectionStrings", new ConnectionStringsSection());
+                }
+
+                //Add in the runtimeDataSource connection string.
+                var connectionStringsSection = (ConnectionStringsSection)appConfig.Sections["connectionStrings"];
+                connectionStringsSection.ConnectionStrings.Add(new ConnectionStringSettings("RuntimeDataSource", "RuntimeDataSources.xml", "Microsoft.VisualStudio.TestTools.DataSource.XML"));
+
                 //If the test tools section doest exist, add it.
                 if (!appConfig.Sections.Cast<ConfigurationSection>().Any(x => x.SectionInformation.Name == "microsoft.visualstudio.testtools"))
                 {
                     appConfig.Sections.Add("microsoft.visualstudio.testtools", new Microsoft.VisualStudio.TestTools.UnitTesting.TestConfigurationSection());
                 }
 
-                var section = (TestConfigurationSection)appConfig.Sections["microsoft.visualstudio.testtools"];
+                var testConfigurationSection = (TestConfigurationSection)appConfig.Sections["microsoft.visualstudio.testtools"];
                 var configChanged = false;
 
                 //Go through all the methods
@@ -46,7 +56,7 @@ namespace MSTestHacks.RuntimeDataSource
                         if (attribute != null && !string.IsNullOrWhiteSpace(attribute.DataSourceSettingName))
                         {
                             //Note: This may remove a datasource that was wanted....
-                            section.DataSources.Remove(attribute.DataSourceSettingName);
+                            testConfigurationSection.DataSources.Remove(attribute.DataSourceSettingName);
 
                             //Add datasource
                             var dataSource = new DataSourceElement()
@@ -56,7 +66,7 @@ namespace MSTestHacks.RuntimeDataSource
                                 DataTableName = type.FullName + "." + method.Name,
                                 DataAccessMethod = "Sequential"
                             };
-                            section.DataSources.Add(dataSource);
+                            testConfigurationSection.DataSources.Add(dataSource);
                             configChanged = true;
 
                             //Get the source data

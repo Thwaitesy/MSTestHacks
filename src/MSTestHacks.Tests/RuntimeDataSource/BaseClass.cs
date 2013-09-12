@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MSTestHacks.RuntimeDataSource;
 
-namespace MSTestHacks.Tests
+namespace MSTestHacks.Tests.RuntimeDataSource
 {
     public class BaseClass : TestBase
     {

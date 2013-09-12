@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MSTestHacks.Tests
+namespace MSTestHacks.Tests.RuntimeDataSource
 {
     [TestClass]
     [AttachRuntimeDataSources(typeof(InheritedTests))]
