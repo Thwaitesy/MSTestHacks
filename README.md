@@ -23,20 +23,13 @@ public class UnitTest1 : TestBase
 ```
 
 ###RuntimeDataSource
-**1)** Add the following connection string to your app.config file
-```xml
-<connectionStrings>
-  <add name="RuntimeDataSource" connectionString="RuntimeDataSources.xml" providerName="Microsoft.VisualStudio.TestTools.DataSource.XML" />
-</connectionStrings>
-```
-
-**2)** Apply `AttachRuntimeDatasources` attribute to your test class, with the type of the class as its parameter. 
+**1)** Apply `AttachRuntimeDatasources` attribute to your test class, with the type of the class as its parameter. 
 ```csharp
 [AttachRuntimeDataSources(typeof(UnitTest1))]
 public class UnitTest1 : TestBase
 ```
 
-**3)** Create a Property, Field or Method, that returns IEnumerable
+**2)** Create a Property, Field or Method, that returns IEnumerable
 ```csharp
 [AttachRuntimeDataSources(typeof(UnitTest1))]
 public class UnitTest1 : TestBase
@@ -52,7 +45,7 @@ public class UnitTest1 : TestBase
 }
 ```
 
-**4)** Add the `DataSource` attribute to your test method, pointing back to the IEnumerable<T> name above.
+**3)** Add the `DataSource` attribute to your test method, pointing back to the IEnumerable<T> name above.
 ```csharp
 [DataSource("Stuff")]
 public void TestMethod1()
@@ -65,13 +58,16 @@ public void TestMethod1()
 
 Roadmap
 ==========================================================================
-* Inject the ConnectionString automatically
 * Better asserts for exceptions
 * Injection of `AttachRuntimeDataSources` attribute at compile time using PostSharp
 * Injection of `DataSource` attribute at compile time using PostSharp
 
 Changelog
 ==========================================================================
+*1.0.2*
+- Inject the ConnectionString automatically
+- Add a couple more tests
+
 *1.0.1*
 - Fixes the issue with stale iterations. Each run was not getting deleted from the xml file and was building up. 
 
