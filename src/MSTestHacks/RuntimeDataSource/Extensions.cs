@@ -12,7 +12,7 @@ namespace MSTestHacks.RuntimeDataSource
     {
         public static T GetRuntimeDataSourceObject<T>(this TestContext testContext)
         {
-            return JsonConvert.DeserializeObject<T>(testContext.DataRow["payload"].ToString());
+            return JsonConvert.DeserializeObject<T>(testContext.DataRow["Data"].ToString());
         }
     }
 }

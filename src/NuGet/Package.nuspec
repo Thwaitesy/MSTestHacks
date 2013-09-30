@@ -2,9 +2,9 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>MSTestHacks</id>
-        <version>1.0.2</version>
+        <version>1.1.0</version>
         <title>MSTest Hacks</title>
-        <authors>Sam Thwaites</authors>
+        <authors>Sam Thwaites, Corey Warner</authors>
         <owners>Sam Thwaites</owners>
         <licenseUrl>https://github.com/Thwaitesy/MSTestHacks/blob/master/LICENCE</licenseUrl>
         <projectUrl>https://github.com/Thwaitesy/MSTestHacks</projectUrl>

@@ -12,6 +12,8 @@ namespace MSTestHacks.Tests.RuntimeDataSource
     [AttachRuntimeDataSources(typeof(InheritedTests))]
     public class InheritedTests : BaseClass
     {
+        const string PREFIX = "MSTestHacks.Tests.RuntimeDataSource.InheritedTests.";
+
         public InheritedTests()
         {
 
@@ -26,7 +28,7 @@ namespace MSTestHacks.Tests.RuntimeDataSource
         }
 
         [TestMethod]
-        [DataSource("Simple2")]
+        [DataSource(PREFIX + "Simple2")]
         public void MyTestMethod()
         {
             Testa();

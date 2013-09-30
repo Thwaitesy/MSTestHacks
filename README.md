@@ -3,6 +3,9 @@ Overview
 Just a bunch of hacks to get around the deficiencies of MSTest. 
 
 Hopefully for those of us that have to work inside the constrainsts of MSTest, this library should ease our pain. (Just a little) 
+
+Check out the tests project for samples
+
 Features
 ==========================================================================
 ***RuntimeDataSource***
@@ -45,9 +48,9 @@ public class UnitTest1 : TestBase
 }
 ```
 
-**3)** Add the `DataSource` attribute to your test method, pointing back to the IEnumerable<T> name above.
+**3)** Add the `DataSource` attribute to your test method, pointing back to the IEnumerable<T> name above. This needs to be fully qualified to create uniqueness.
 ```csharp
-[DataSource("Stuff")]
+[DataSource("Namespace.UnitTest1.Stuff")]
 public void TestMethod1()
 {
     var number = this.TestContext.GetRuntimeDataSourceObject<int>();
@@ -64,6 +67,10 @@ Roadmap
 
 Changelog
 ==========================================================================
+*1.1.0 - (BREAKING CHANGE)*
+- Creating a datasource file per datasource, simplifies life
+- All datasources now have to be fully qualified, pointing to the IEnumerable<T>. This creates a unique datasource that was required in some instances. 
+
 *1.0.2*
 - Inject the ConnectionString automatically
 - Add a couple more tests
@@ -80,6 +87,11 @@ Changelog
 
 *0.0.1*
 - Initial release
+
+Contributors
+==========================================================================
+Sam Thwaites    
+Corey Warner
 
 Licence
 ==========================================================================
