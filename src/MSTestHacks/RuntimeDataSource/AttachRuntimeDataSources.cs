@@ -35,7 +35,7 @@ namespace MSTestHacks.RuntimeDataSource
 
                 //Add in the runtimeDataSource connection string.
                 var connectionStringsSection = (ConnectionStringsSection)appConfig.Sections["connectionStrings"];
-                connectionStringsSection.ConnectionStrings.Add(new ConnectionStringSettings("RuntimeDataSource", "RuntimeDataSources.xml", "Microsoft.VisualStudio.TestTools.DataSource.XML"));
+                //connectionStringsSection.ConnectionStrings.Add(new ConnectionStringSettings("RuntimeDataSource", "RuntimeDataSources.xml", "Microsoft.VisualStudio.TestTools.DataSource.XML"));
 
                 //If the test tools section doest exist, add it.
                 if (!appConfig.Sections.Cast<ConfigurationSection>().Any(x => x.SectionInformation.Name == "microsoft.visualstudio.testtools"))
@@ -55,15 +55,19 @@ namespace MSTestHacks.RuntimeDataSource
                         var attribute = method.GetCustomAttribute<DataSourceAttribute>();
                         if (attribute != null && !string.IsNullOrWhiteSpace(attribute.DataSourceSettingName))
                         {
+
+                            //Add connection string
+                            connectionStringsSection.ConnectionStrings.Add(new ConnectionStringSettings(type.FullName + "." + method.Name + "_RuntimeDataSource", type.FullName + "." + method.Name + ".xml", "Microsoft.VisualStudio.TestTools.DataSource.XML"));
+
                             //Note: This may remove a datasource that was wanted....
-                            testConfigurationSection.DataSources.Remove(attribute.DataSourceSettingName);
+                            //testConfigurationSection.DataSources.Remove(attribute.DataSourceSettingName);
 
                             //Add datasource
                             var dataSource = new DataSourceElement()
                             {
                                 Name = attribute.DataSourceSettingName,
-                                ConnectionString = "RuntimeDataSource",
-                                DataTableName = type.FullName + "." + method.Name,
+                                ConnectionString = type.FullName + "." + method.Name + "_RuntimeDataSource",
+                                DataTableName = "Row",
                                 DataAccessMethod = "Sequential"
                             };
                             testConfigurationSection.DataSources.Add(dataSource);
@@ -79,20 +83,20 @@ namespace MSTestHacks.RuntimeDataSource
                             //Create the file (if not there)
                             var fileName = "RuntimeDataSources.xml";
                             if (!File.Exists(fileName))
-                                File.WriteAllText(fileName, new XDocument(new XDeclaration("1.0", "utf-8", "true"), new XElement("DataSources")).ToString());
+                                File.WriteAllText(fileName, new XDocument(new XDeclaration("1.0", "utf-8", "true"), new XElement("Rows")).ToString());
 
                             //Load the file
                             var doc = XDocument.Load(fileName);
 
                             //Remove all elements with the same name
-                            doc.Element("DataSources").Elements(dataSource.DataTableName).Remove();
+                            doc.Element("Rows").Elements(dataSource.DataTableName).Remove();
 
                             //Add the iterations
-                            doc.Element("DataSources").Add(
+                            doc.Element("Rows").Add(
 
                                 from data in sourceData
                                 select new XElement(dataSource.DataTableName,
-                                       new XElement("Payload", JsonConvert.SerializeObject(data))));
+                                       new XElement("Data", JsonConvert.SerializeObject(data))));
 
                             //Save the file
                             doc.Save(fileName);
