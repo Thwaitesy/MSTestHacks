@@ -12,6 +12,8 @@ namespace MSTestHacks.Tests.RuntimeDataSource
     [AttachRuntimeDataSources(typeof(SimpleObjects))]
     public class SimpleObjects : TestBase
     {
+        const string PREFIX = "MSTestHacks.Tests.RuntimeDataSource.SimpleObjects.";
+
         private int _publicFieldCount = 221;
         public IEnumerable<int> PublicField = Enumerable.Range(0, 221);
 
@@ -47,7 +49,7 @@ namespace MSTestHacks.Tests.RuntimeDataSource
 
         #region Field Tests
         [TestMethod]
-        [DataSource("PublicField")]
+        [DataSource(PREFIX + "PublicField")]
         public void Test_Simple_Objects_Injected_From_PublicField()
         {
             //Make sure the object can be retrieved.
@@ -59,7 +61,7 @@ namespace MSTestHacks.Tests.RuntimeDataSource
 
         #region Property Tests
         [TestMethod]
-        [DataSource("PublicProperty")]
+        [DataSource(PREFIX + "PublicProperty")]
         public void Test_Simple_Objects_Injected_From_PublicProperty()
         {
             //Make sure the object can be retrieved.
@@ -69,7 +71,7 @@ namespace MSTestHacks.Tests.RuntimeDataSource
         }
 
         [TestMethod]
-        [DataSource("PrivateProperty")]
+        [DataSource(PREFIX + "PrivateProperty")]
         public void Test_Simple_Objects_Injected_From_PrivateProperty()
         {
             //Make sure the object can be retrieved.
@@ -81,7 +83,7 @@ namespace MSTestHacks.Tests.RuntimeDataSource
 
         #region Method Tests
         [TestMethod]
-        [DataSource("PublicMethod")]
+        [DataSource(PREFIX + "PublicMethod")]
         public void Test_Simple_Objects_Injected_From_PublicMethod()
         {
             //Make sure the object can be retrieved.
@@ -93,7 +95,7 @@ namespace MSTestHacks.Tests.RuntimeDataSource
         }
 
         [TestMethod]
-        [DataSource("PrivateMethod")]
+        [DataSource(PREFIX + "PrivateMethod")]
         public void Test_Simple_Objects_Injected_From_PrivateMethod()
         {
             //Make sure the object can be retrieved.

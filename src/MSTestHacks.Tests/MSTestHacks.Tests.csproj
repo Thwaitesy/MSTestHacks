@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="RuntimeDataSource\ComplexObjects.cs" />
     <Compile Include="RuntimeDataSource\BaseClass.cs" />
+    <Compile Include="RuntimeDataSource\SimpleObjects2.cs" />
     <Compile Include="RuntimeDataSource\InheritedTests.cs" />
     <Compile Include="RuntimeDataSource\SimpleObjects.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -65,7 +66,6 @@
       <Name>MSTestHacks</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

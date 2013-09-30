@@ -9,6 +9,8 @@ namespace MSTestHacks.Tests.RuntimeDataSource
     [AttachRuntimeDataSources(typeof(ComplexObjects))]
     public class ComplexObjects : TestBase
     {
+        const string PREFIX = "MSTestHacks.Tests.RuntimeDataSource.ComplexObjects.";
+
         public IEnumerable<XYZ> ComplexField = new List<XYZ> 
         { 
             new XYZ(1, "test 1"),
@@ -40,7 +42,7 @@ namespace MSTestHacks.Tests.RuntimeDataSource
         }
 
         [TestMethod]
-        [DataSource("ComplexField")]
+        [DataSource(PREFIX + "ComplexField")]
         public void Complete_Object_Can_Be_Injected_From_Field()
         {
             var x = this.TestContext.GetRuntimeDataSourceObject<XYZ>();
@@ -49,7 +51,7 @@ namespace MSTestHacks.Tests.RuntimeDataSource
         }
 
         [TestMethod]
-        [DataSource("ComplexProperty")]
+        [DataSource(PREFIX + "ComplexProperty")]
         public void Complete_Object_Can_Be_Injected_From_Property()
         {
             var x = this.TestContext.GetRuntimeDataSourceObject<XYZ>();
@@ -58,7 +60,7 @@ namespace MSTestHacks.Tests.RuntimeDataSource
         }
 
         [TestMethod]
-        [DataSource("ComplexMethod")]
+        [DataSource(PREFIX + "ComplexMethod")]
         public void Complete_Object_Can_Be_Injected_From_Method()
         {
             var x = this.TestContext.GetRuntimeDataSourceObject<XYZ>();
