@@ -48,7 +48,7 @@ public class UnitTest1 : TestBase
 }
 ```
 
-**3)** Add the `DataSource` attribute to your test method, pointing back to the IEnumerable<T> name above. (FULLY QUALIFIED)
+**3)** Add the `DataSource` attribute to your test method, pointing back to the IEnumerable<T> name above. This needs to be fully qualified to create uniqueness.
 ```csharp
 [DataSource("Namespace.UnitTest1.Stuff")]
 public void TestMethod1()
@@ -90,8 +90,8 @@ Changelog
 
 Contributors
 ==========================================================================
-Sam Thwaites @thwaitesy
-Corey Warner @cjwarner
+Sam Thwaites    
+Corey Warner
 
 Licence
 ==========================================================================
