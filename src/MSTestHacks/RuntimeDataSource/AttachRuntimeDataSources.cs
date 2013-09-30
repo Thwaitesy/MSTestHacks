@@ -16,35 +16,33 @@ namespace MSTestHacks.RuntimeDataSource
     [AttributeUsage(AttributeTargets.Class)]
     public sealed class AttachRuntimeDataSources : ContextAttribute
     {
+        private string DATASOURCES_PATH = Path.Combine(Path.GetDirectoryName(new UriBuilder(Assembly.GetExecutingAssembly().GetName().CodeBase).Uri.LocalPath), "RuntimeDataSources");
         private static HashSet<Type> typesInitalized = new HashSet<Type>();
 
         public AttachRuntimeDataSources(Type type)
             : base("AttachRuntimeDataSources")
         {
+            var appConfig = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+
+            //If the connectionStrings section doest exist, add it.
+            if (!appConfig.Sections.Cast<ConfigurationSection>().Any(x => x.SectionInformation.Name == "connectionStrings"))
+                appConfig.Sections.Add("connectionStrings", new ConnectionStringsSection());
+
+            //If the test tools section doest exist, add it.
+            if (!appConfig.Sections.Cast<ConfigurationSection>().Any(x => x.SectionInformation.Name == "microsoft.visualstudio.testtools"))
+                appConfig.Sections.Add("microsoft.visualstudio.testtools", new Microsoft.VisualStudio.TestTools.UnitTesting.TestConfigurationSection());
+
+            var connectionStringsSection = (ConnectionStringsSection)appConfig.Sections["connectionStrings"];
+            var testConfigurationSection = (TestConfigurationSection)appConfig.Sections["microsoft.visualstudio.testtools"];
+
+            if (!Directory.Exists(DATASOURCES_PATH))
+                Directory.CreateDirectory(DATASOURCES_PATH);
+
+            var configChanged = false;
+
             if (!typesInitalized.Contains(type))
             {
                 typesInitalized.Add(type);
-
-                var appConfig = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-
-                //If the connectionStrings section doest exist, add it.
-                if (!appConfig.Sections.Cast<ConfigurationSection>().Any(x => x.SectionInformation.Name == "connectionStrings"))
-                {
-                    appConfig.Sections.Add("connectionStrings", new ConnectionStringsSection());
-                }
-
-                //Add in the runtimeDataSource connection string.
-                var connectionStringsSection = (ConnectionStringsSection)appConfig.Sections["connectionStrings"];
-                //connectionStringsSection.ConnectionStrings.Add(new ConnectionStringSettings("RuntimeDataSource", "RuntimeDataSources.xml", "Microsoft.VisualStudio.TestTools.DataSource.XML"));
-
-                //If the test tools section doest exist, add it.
-                if (!appConfig.Sections.Cast<ConfigurationSection>().Any(x => x.SectionInformation.Name == "microsoft.visualstudio.testtools"))
-                {
-                    appConfig.Sections.Add("microsoft.visualstudio.testtools", new Microsoft.VisualStudio.TestTools.UnitTesting.TestConfigurationSection());
-                }
-
-                var testConfigurationSection = (TestConfigurationSection)appConfig.Sections["microsoft.visualstudio.testtools"];
-                var configChanged = false;
 
                 //Go through all the methods
                 foreach (var method in type.GetMethods())
@@ -55,18 +53,18 @@ namespace MSTestHacks.RuntimeDataSource
                         var attribute = method.GetCustomAttribute<DataSourceAttribute>();
                         if (attribute != null && !string.IsNullOrWhiteSpace(attribute.DataSourceSettingName))
                         {
+                            var connectionStringName = attribute.DataSourceSettingName + "_RuntimeDataSource";
+                            var dataSourceName = attribute.DataSourceSettingName;
+                            var dataSourceFilePath = Path.Combine(DATASOURCES_PATH, dataSourceName + ".xml");
 
                             //Add connection string
-                            connectionStringsSection.ConnectionStrings.Add(new ConnectionStringSettings(type.FullName + "." + method.Name + "_RuntimeDataSource", type.FullName + "." + method.Name + ".xml", "Microsoft.VisualStudio.TestTools.DataSource.XML"));
-
-                            //Note: This may remove a datasource that was wanted....
-                            //testConfigurationSection.DataSources.Remove(attribute.DataSourceSettingName);
+                            connectionStringsSection.ConnectionStrings.Add(new ConnectionStringSettings(connectionStringName, dataSourceFilePath, "Microsoft.VisualStudio.TestTools.DataSource.XML"));
 
                             //Add datasource
                             var dataSource = new DataSourceElement()
                             {
-                                Name = attribute.DataSourceSettingName,
-                                ConnectionString = type.FullName + "." + method.Name + "_RuntimeDataSource",
+                                Name = dataSourceName,
+                                ConnectionString = connectionStringName,
                                 DataTableName = "Row",
                                 DataAccessMethod = "Sequential"
                             };
@@ -81,7 +79,7 @@ namespace MSTestHacks.RuntimeDataSource
                             }
 
                             //Create the file (if not there)
-                            var fileName = "RuntimeDataSources.xml";
+                            var fileName = dataSourceFilePath;
                             if (!File.Exists(fileName))
                                 File.WriteAllText(fileName, new XDocument(new XDeclaration("1.0", "utf-8", "true"), new XElement("Rows")).ToString());
 
