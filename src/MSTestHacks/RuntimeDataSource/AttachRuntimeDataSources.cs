@@ -53,9 +53,18 @@ namespace MSTestHacks.RuntimeDataSource
                         var attribute = method.GetCustomAttribute<DataSourceAttribute>();
                         if (attribute != null && !string.IsNullOrWhiteSpace(attribute.DataSourceSettingName))
                         {
-                            var connectionStringName = attribute.DataSourceSettingName + "_RuntimeDataSource";
                             var dataSourceName = attribute.DataSourceSettingName;
+                            var connectionStringName = attribute.DataSourceSettingName + "_RuntimeDataSource";
                             var dataSourceFilePath = Path.Combine(DATASOURCES_PATH, dataSourceName + ".xml");
+                            var lastIndexOfDot = dataSourceName.LastIndexOf(".");
+                            if (lastIndexOfDot == -1)
+                                throw new Exception("Please specify the fully qualified type + property.");
+
+                            var refernceName = dataSourceName.Substring(lastIndexOfDot + 1);
+                            var typeName = dataSourceName.Substring(0, lastIndexOfDot);
+
+                            if (typeName != type.FullName)
+                                continue;
 
                             //Add connection string
                             connectionStringsSection.ConnectionStrings.Add(new ConnectionStringSettings(connectionStringName, dataSourceFilePath, "Microsoft.VisualStudio.TestTools.DataSource.XML"));
@@ -73,7 +82,12 @@ namespace MSTestHacks.RuntimeDataSource
 
                             //Get the source data
                             var sourceData = new List<object>();
-                            foreach (var x in new ProviderReference(type, dataSource.Name).GetInstance())
+
+                            //var lastIndexOfDot = dataSourceName.LastIndexOf(".");
+                            //var refernceName = dataSourceName.Substring(lastIndexOfDot);
+                            //var typeName = dataSourceName.Substring(0, lastIndexOfDot);
+                            //var typex = Type.GetType(typeName);
+                            foreach (var x in new ProviderReference(type, refernceName).GetInstance())
                             {
                                 sourceData.Add(x);
                             }
@@ -102,7 +116,8 @@ namespace MSTestHacks.RuntimeDataSource
 
                         if (configChanged)
                         {
-                            appConfig.Save(ConfigurationSaveMode.Modified, true);
+                            appConfig.Save(ConfigurationSaveMode.Modified);
+                            ConfigurationManager.RefreshSection("connectionStrings");
                             ConfigurationManager.RefreshSection("microsoft.visualstudio.testtools");
                         }
                     }

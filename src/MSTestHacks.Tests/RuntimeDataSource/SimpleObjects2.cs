@@ -12,7 +12,9 @@ namespace MSTestHacks.Tests.RuntimeDataSource
     [AttachRuntimeDataSources(typeof(SimpleObjects2))]
     public class SimpleObjects2 : TestBase
     {
-        private int _publicPropertyCount = 55;
+        const string PREFIX = "MSTestHacks.Tests.RuntimeDataSource.SimpleObjects2.";
+
+        private int _publicPropertyCount = 14;
         public IEnumerable<int> PublicProperty
         {
             get
@@ -22,7 +24,7 @@ namespace MSTestHacks.Tests.RuntimeDataSource
         }
 
         [TestMethod]
-        [DataSource("PublicProperty")]
+        [DataSource(PREFIX + "PublicProperty")]
         public void Test_Simple_Objects_Injected_From_PublicProperty()
         {
             //Make sure the object can be retrieved.

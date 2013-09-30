@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="50a4f35a-0f88-4027-b451-57079cefed5a" name="sam.thwaites@TA015928 2013-09-30 16:44:54" runUser="TATTSGROUP\sam.thwaites" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Default Test Settings" id="ef5e82db-620f-4dbc-bc5b-3c755e6465e8">
+    <Deployment userDeploymentRoot="D:\Dropbox\GitHub\MSTestHacks" useDefaultDeploymentRoot="false" runDeploymentRoot="sam.thwaites_TA015928 2013-09-30 16_44_54" />
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2013-09-30T16:44:54.2636811+09:30" queuing="2013-09-30T16:44:54.6236811+09:30" start="2013-09-30T16:44:54.6986811+09:30" finish="2013-09-30T16:44:55.2706811+09:30" />
+  <ResultSummary outcome="Failed">
+    <Counters total="10" executed="10" error="0" failed="10" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" passed="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <DebugTrace>System.Configuration.ConfigurationErrorsException: The entry 'MSTestHacks.Tests.RuntimeDataSource.ComplexObjects.ComplexField_RuntimeDataSource' has already been added.
+   at System.Configuration.ConfigurationElementCollection.BaseAdd(ConfigurationElement element, Boolean throwIfExists, Boolean ignoreLocks)
+   at System.Configuration.ConfigurationElementCollection.BaseAdd(ConfigurationElement element)
+   at System.Configuration.ConnectionStringSettingsCollection.Add(ConnectionStringSettings settings)
+   at MSTestHacks.RuntimeDataSource.AttachRuntimeDataSources..ctor(Type type) in d:\Dropbox\GitHub\MSTestHacks\src\MSTestHacks\RuntimeDataSource\AttachRuntimeDataSources.cs:line 70
+System.Configuration.ConfigurationErrorsException: The entry 'MSTestHacks.Tests.RuntimeDataSource.ComplexObjects.ComplexProperty_RuntimeDataSource' has already been added.
+   at System.Configuration.ConfigurationElementCollection.BaseAdd(ConfigurationElement element, Boolean throwIfExists, Boolean ignoreLocks)
+   at System.Configuration.ConfigurationElementCollection.BaseAdd(ConfigurationElement element)
+   at System.Configuration.ConnectionStringSettingsCollection.Add(ConnectionStringSettings settings)
+   at MSTestHacks.RuntimeDataSource.AttachRuntimeDataSources..ctor(Type type) in d:\Dropbox\GitHub\MSTestHacks\src\MSTestHacks\RuntimeDataSource\AttachRuntimeDataSources.cs:line 70
+System.Configuration.ConfigurationErrorsException: The entry 'MSTestHacks.Tests.RuntimeDataSource.ComplexObjects.ComplexMethod_RuntimeDataSource' has already been added.
+   at System.Configuration.ConfigurationElementCollection.BaseAdd(ConfigurationElement element, Boolean throwIfExists, Boolean ignoreLocks)
+   at System.Configuration.ConfigurationElementCollection.BaseAdd(ConfigurationElement element)
+   at System.Configuration.ConnectionStringSettingsCollection.Add(ConnectionStringSettings settings)
+   at MSTestHacks.RuntimeDataSource.AttachRuntimeDataSources..ctor(Type type) in d:\Dropbox\GitHub\MSTestHacks\src\MSTestHacks\RuntimeDataSource\AttachRuntimeDataSources.cs:line 70
+System.Configuration.ConfigurationErrorsException: The entry 'MSTestHacks.Tests.RuntimeDataSource.SimpleObjects2.PublicProperty_RuntimeDataSource' has already been added.
+   at System.Configuration.ConfigurationElementCollection.BaseAdd(ConfigurationElement element, Boolean throwIfExists, Boolean ignoreLocks)
+   at System.Configuration.ConfigurationElementCollection.BaseAdd(ConfigurationElement element)
+   at System.Configuration.ConnectionStringSettingsCollection.Add(ConnectionStringSettings settings)
+   at MSTestHacks.RuntimeDataSource.AttachRuntimeDataSources..ctor(Type type) in d:\Dropbox\GitHub\MSTestHacks\src\MSTestHacks\RuntimeDataSource\AttachRuntimeDataSources.cs:line 70
+System.Configuration.ConfigurationErrorsException: The entry 'MSTestHacks.Tests.RuntimeDataSource.InheritedTests.Simple2_RuntimeDataSource' has already been added.
+   at System.Configuration.ConfigurationElementCollection.BaseAdd(ConfigurationElement element, Boolean throwIfExists, Boolean ignoreLocks)
+   at System.Configuration.ConfigurationElementCollection.BaseAdd(ConfigurationElement element)
+   at System.Configuration.ConnectionStringSettingsCollection.Add(ConnectionStringSettings settings)
+   at MSTestHacks.RuntimeDataSource.AttachRuntimeDataSources..ctor(Type type) in d:\Dropbox\GitHub\MSTestHacks\src\MSTestHacks\RuntimeDataSource\AttachRuntimeDataSources.cs:line 70
+System.Configuration.ConfigurationErrorsException: The entry 'MSTestHacks.Tests.RuntimeDataSource.SimpleObjects.PublicField_RuntimeDataSource' has already been added.
+   at System.Configuration.ConfigurationElementCollection.BaseAdd(ConfigurationElement element, Boolean throwIfExists, Boolean ignoreLocks)
+   at System.Configuration.ConfigurationElementCollection.BaseAdd(ConfigurationElement element)
+   at System.Configuration.ConnectionStringSettingsCollection.Add(ConnectionStringSettings settings)
+   at MSTestHacks.RuntimeDataSource.AttachRuntimeDataSources..ctor(Type type) in d:\Dropbox\GitHub\MSTestHacks\src\MSTestHacks\RuntimeDataSource\AttachRuntimeDataSources.cs:line 70
+System.Configuration.ConfigurationErrorsException: The entry 'MSTestHacks.Tests.RuntimeDataSource.SimpleObjects.PublicProperty_RuntimeDataSource' has already been added.
+   at System.Configuration.ConfigurationElementCollection.BaseAdd(ConfigurationElement element, Boolean throwIfExists, Boolean ignoreLocks)
+   at System.Configuration.ConfigurationElementCollection.BaseAdd(ConfigurationElement element)
+   at System.Configuration.ConnectionStringSettingsCollection.Add(ConnectionStringSettings settings)
+   at MSTestHacks.RuntimeDataSource.AttachRuntimeDataSources..ctor(Type type) in d:\Dropbox\GitHub\MSTestHacks\src\MSTestHacks\RuntimeDataSource\AttachRuntimeDataSources.cs:line 70
+System.Configuration.ConfigurationErrorsException: The entry 'MSTestHacks.Tests.RuntimeDataSource.SimpleObjects.PrivateProperty_RuntimeDataSource' has already been added.
+   at System.Configuration.ConfigurationElementCollection.BaseAdd(ConfigurationElement element, Boolean throwIfExists, Boolean ignoreLocks)
+   at System.Configuration.ConfigurationElementCollection.BaseAdd(ConfigurationElement element)
+   at System.Configuration.ConnectionStringSettingsCollection.Add(ConnectionStringSettings settings)
+   at MSTestHacks.RuntimeDataSource.AttachRuntimeDataSources..ctor(Type type) in d:\Dropbox\GitHub\MSTestHacks\src\MSTestHacks\RuntimeDataSource\AttachRuntimeDataSources.cs:line 70
+System.Configuration.ConfigurationErrorsException: The entry 'MSTestHacks.Tests.RuntimeDataSource.SimpleObjects.PublicMethod_RuntimeDataSource' has already been added.
+   at System.Configuration.ConfigurationElementCollection.BaseAdd(ConfigurationElement element, Boolean throwIfExists, Boolean ignoreLocks)
+   at System.Configuration.ConfigurationElementCollection.BaseAdd(ConfigurationElement element)
+   at System.Configuration.ConnectionStringSettingsCollection.Add(ConnectionStringSettings settings)
+   at MSTestHacks.RuntimeDataSource.AttachRuntimeDataSources..ctor(Type type) in d:\Dropbox\GitHub\MSTestHacks\src\MSTestHacks\RuntimeDataSource\AttachRuntimeDataSources.cs:line 70
+System.Configuration.ConfigurationErrorsException: The entry 'MSTestHacks.Tests.RuntimeDataSource.SimpleObjects.PrivateMethod_RuntimeDataSource' has already been added.
+   at System.Configuration.ConfigurationElementCollection.BaseAdd(ConfigurationElement element, Boolean throwIfExists, Boolean ignoreLocks)
+   at System.Configuration.ConfigurationElementCollection.BaseAdd(ConfigurationElement element)
+   at System.Configuration.ConnectionStringSettingsCollection.Add(ConnectionStringSettings settings)
+   at MSTestHacks.RuntimeDataSource.AttachRuntimeDataSources..ctor(Type type) in d:\Dropbox\GitHub\MSTestHacks\src\MSTestHacks\RuntimeDataSource\AttachRuntimeDataSources.cs:line 70
+V, 11660, 14, 2013/09/30, 16:44:55.123, TA015928\QTAgent32.exe, UnitTestExecuter.RunClassInitializeMethod: Acquiring m_runner.SyncRoot.
+V, 11660, 14, 2013/09/30, 16:44:55.123, TA015928\QTAgent32.exe, UnitTestExecuter.RunClassInitializeMethod: Acquired m_runner.SyncRoot.
+V, 11660, 14, 2013/09/30, 16:44:55.123, TA015928\QTAgent32.exe, UnitTestExecuter.RunClassInitializeMethod: Released m_runner.SyncRoot.
+V, 11660, 14, 2013/09/30, 16:44:55.124, TA015928\QTAgent32.exe, UnitTestRunner.ExecuteDataDrivenTest: started.
+E, 11660, 14, 2013/09/30, 16:44:55.133, TA015928\QTAgent32.exe, Could not find a part of the path 'D:\Dropbox\GitHub\MSTestHacks\sam.thwaites_TA015928 2013-09-30 16_38_31\Out\RuntimeDataSources\MSTestHacks.Tests.RuntimeDataSource.ComplexObjects.ComplexField.xml'. for XML data source D:\Dropbox\GitHub\MSTestHacks\sam.thwaites_TA015928 2013-09-30 16_38_31\Out\RuntimeDataSources\MSTestHacks.Tests.RuntimeDataSource.ComplexObjects.ComplexField.xml
+V, 11660, 19, 2013/09/30, 16:44:55.156, TA015928\QTAgent32.exe, UnitTestExecuter.RunClassInitializeMethod: Acquiring m_runner.SyncRoot.
+V, 11660, 19, 2013/09/30, 16:44:55.156, TA015928\QTAgent32.exe, UnitTestExecuter.RunClassInitializeMethod: Acquired m_runner.SyncRoot.
+V, 11660, 19, 2013/09/30, 16:44:55.156, TA015928\QTAgent32.exe, UnitTestExecuter.RunClassInitializeMethod: Released m_runner.SyncRoot.
+V, 11660, 19, 2013/09/30, 16:44:55.156, TA015928\QTAgent32.exe, UnitTestRunner.ExecuteDataDrivenTest: started.
+E, 11660, 19, 2013/09/30, 16:44:55.158, TA015928\QTAgent32.exe, Could not find a part of the path 'D:\Dropbox\GitHub\MSTestHacks\sam.thwaites_TA015928 2013-09-30 16_38_31\Out\RuntimeDataSources\MSTestHacks.Tests.RuntimeDataSource.ComplexObjects.ComplexMethod.xml'. for XML data source D:\Dropbox\GitHub\MSTestHacks\sam.thwaites_TA015928 2013-09-30 16_38_31\Out\RuntimeDataSources\MSTestHacks.Tests.RuntimeDataSource.ComplexObjects.ComplexMethod.xml
+V, 11660, 21, 2013/09/30, 16:44:55.168, TA015928\QTAgent32.exe, UnitTestExecuter.RunClassInitializeMethod: Acquiring m_runner.SyncRoot.
+V, 11660, 21, 2013/09/30, 16:44:55.168, TA015928\QTAgent32.exe, UnitTestExecuter.RunClassInitializeMethod: Acquired m_runner.SyncRoot.
+V, 11660, 21, 2013/09/30, 16:44:55.168, TA015928\QTAgent32.exe, UnitTestExecuter.RunClassInitializeMethod: Released m_runner.SyncRoot.
+V, 11660, 21, 2013/09/30, 16:44:55.168, TA015928\QTAgent32.exe, UnitTestRunner.ExecuteDataDrivenTest: started.
+E, 11660, 21, 2013/09/30, 16:44:55.168, TA015928\QTAgent32.exe, Could not find a part of the path 'D:\Dropbox\GitHub\MSTestHacks\sam.thwaites_TA015928 2013-09-30 16_38_31\Out\RuntimeDataSources\MSTestHacks.Tests.RuntimeDataSource.ComplexObjects.ComplexProperty.xml'. for XML data source D:\Dropbox\GitHub\MSTestHacks\sam.thwaites_TA015928 2013-09-30 16_38_31\Out\RuntimeDataSources\MSTestHacks.Tests.RuntimeDataSource.ComplexObjects.ComplexProperty.xml
+V, 11660, 23, 2013/09/30, 16:44:55.178, TA015928\QTAgent32.exe, UnitTestExecuter.RunClassInitializeMethod: Acquiring m_runner.SyncRoot.
+V, 11660, 23, 2013/09/30, 16:44:55.178, TA015928\QTAgent32.exe, UnitTestExecuter.RunClassInitializeMethod: Acquired m_runner.SyncRoot.
+V, 11660, 23, 2013/09/30, 16:44:55.178, TA015928\QTAgent32.exe, UnitTestExecuter.RunClassInitializeMethod: Released m_runner.SyncRoot.
+V, 11660, 23, 2013/09/30, 16:44:55.178, TA015928\QTAgent32.exe, UnitTestRunner.ExecuteDataDrivenTest: started.
+E, 11660, 23, 2013/09/30, 16:44:55.178, TA015928\QTAgent32.exe, Could not find a part of the path 'D:\Dropbox\GitHub\MSTestHacks\sam.thwaites_TA015928 2013-09-30 16_38_31\Out\RuntimeDataSources\MSTestHacks.Tests.RuntimeDataSource.InheritedTests.Simple2.xml'. for XML data source D:\Dropbox\GitHub\MSTestHacks\sam.thwaites_TA015928 2013-09-30 16_38_31\Out\RuntimeDataSources\MSTestHacks.Tests.RuntimeDataSource.InheritedTests.Simple2.xml
+V, 11660, 25, 2013/09/30, 16:44:55.186, TA015928\QTAgent32.exe, UnitTestExecuter.RunClassInitializeMethod: Acquiring m_runner.SyncRoot.
+V, 11660, 25, 2013/09/30, 16:44:55.186, TA015928\QTAgent32.exe, UnitTestExecuter.RunClassInitializeMethod: Acquired m_runner.SyncRoot.
+V, 11660, 25, 2013/09/30, 16:44:55.186, TA015928\QTAgent32.exe, UnitTestExecuter.RunClassInitializeMethod: Released m_runner.SyncRoot.
+V, 11660, 25, 2013/09/30, 16:44:55.186, TA015928\QTAgent32.exe, UnitTestRunner.ExecuteDataDrivenTest: started.
+E, 11660, 25, 2013/09/30, 16:44:55.186, TA015928\QTAgent32.exe, Could not find a part of the path 'D:\Dropbox\GitHub\MSTestHacks\sam.thwaites_TA015928 2013-09-30 16_38_31\Out\RuntimeDataSources\MSTestHacks.Tests.RuntimeDataSource.SimpleObjects.PrivateMethod.xml'. for XML data source D:\Dropbox\GitHub\MSTestHacks\sam.thwaites_TA015928 2013-09-30 16_38_31\Out\RuntimeDataSources\MSTestHacks.Tests.RuntimeDataSource.SimpleObjects.PrivateMethod.xml
+V, 11660, 27, 2013/09/30, 16:44:55.194, TA015928\QTAgent32.exe, UnitTestExecuter.RunClassInitializeMethod: Acquiring m_runner.SyncRoot.
+V, 11660, 27, 2013/09/30, 16:44:55.194, TA015928\QTAgent32.exe, UnitTestExecuter.RunClassInitializeMethod: Acquired m_runner.SyncRoot.
+V, 11660, 27, 2013/09/30, 16:44:55.194, TA015928\QTAgent32.exe, UnitTestExecuter.RunClassInitializeMethod: Released m_runner.SyncRoot.
+V, 11660, 27, 2013/09/30, 16:44:55.194, TA015928\QTAgent32.exe, UnitTestRunner.ExecuteDataDrivenTest: started.
+E, 11660, 27, 2013/09/30, 16:44:55.194, TA015928\QTAgent32.exe, Could not find a part of the path 'D:\Dropbox\GitHub\MSTestHacks\sam.thwaites_TA015928 2013-09-30 16_38_31\Out\RuntimeDataSources\MSTestHacks.Tests.RuntimeDataSource.SimpleObjects.PrivateProperty.xml'. for XML data source D:\Dropbox\GitHub\MSTestHacks\sam.thwaites_TA015928 2013-09-30 16_38_31\Out\RuntimeDataSources\MSTestHacks.Tests.RuntimeDataSource.SimpleObjects.PrivateProperty.xml
+V, 11660, 29, 2013/09/30, 16:44:55.202, TA015928\QTAgent32.exe, UnitTestExecuter.RunClassInitializeMethod: Acquiring m_runner.SyncRoot.
+V, 11660, 29, 2013/09/30, 16:44:55.203, TA015928\QTAgent32.exe, UnitTestExecuter.RunClassInitializeMethod: Acquired m_runner.SyncRoot.
+V, 11660, 29, 2013/09/30, 16:44:55.203, TA015928\QTAgent32.exe, UnitTestExecuter.RunClassInitializeMethod: Released m_runner.SyncRoot.
+V, 11660, 29, 2013/09/30, 16:44:55.203, TA015928\QTAgent32.exe, UnitTestRunner.ExecuteDataDrivenTest: started.
+E, 11660, 29, 2013/09/30, 16:44:55.203, TA015928\QTAgent32.exe, Could not find a part of the path 'D:\Dropbox\GitHub\MSTestHacks\sam.thwaites_TA015928 2013-09-30 16_38_31\Out\RuntimeDataSources\MSTestHacks.Tests.RuntimeDataSource.SimpleObjects.PublicField.xml'. for XML data source D:\Dropbox\GitHub\MSTestHacks\sam.thwaites_TA015928 2013-09-30 16_38_31\Out\RuntimeDataSources\MSTestHacks.Tests.RuntimeDataSource.SimpleObjects.PublicField.xml
+V, 11660, 31, 2013/09/30, 16:44:55.210, TA015928\QTAgent32.exe, UnitTestExecuter.RunClassInitializeMethod: Acquiring m_runner.SyncRoot.
+V, 11660, 31, 2013/09/30, 16:44:55.211, TA015928\QTAgent32.exe, UnitTestExecuter.RunClassInitializeMethod: Acquired m_runner.SyncRoot.
+V, 11660, 31, 2013/09/30, 16:44:55.211, TA015928\QTAgent32.exe, UnitTestExecuter.RunClassInitializeMethod: Released m_runner.SyncRoot.
+V, 11660, 31, 2013/09/30, 16:44:55.211, TA015928\QTAgent32.exe, UnitTestRunner.ExecuteDataDrivenTest: started.
+E, 11660, 31, 2013/09/30, 16:44:55.211, TA015928\QTAgent32.exe, Could not find a part of the path 'D:\Dropbox\GitHub\MSTestHacks\sam.thwaites_TA015928 2013-09-30 16_38_31\Out\RuntimeDataSources\MSTestHacks.Tests.RuntimeDataSource.SimpleObjects.PublicMethod.xml'. for XML data source D:\Dropbox\GitHub\MSTestHacks\sam.thwaites_TA015928 2013-09-30 16_38_31\Out\RuntimeDataSources\MSTestHacks.Tests.RuntimeDataSource.SimpleObjects.PublicMethod.xml
+V, 11660, 33, 2013/09/30, 16:44:55.218, TA015928\QTAgent32.exe, UnitTestExecuter.RunClassInitializeMethod: Acquiring m_runner.SyncRoot.
+V, 11660, 33, 2013/09/30, 16:44:55.218, TA015928\QTAgent32.exe, UnitTestExecuter.RunClassInitializeMethod: Acquired m_runner.SyncRoot.
+V, 11660, 33, 2013/09/30, 16:44:55.218, TA015928\QTAgent32.exe, UnitTestExecuter.RunClassInitializeMethod: Released m_runner.SyncRoot.
+V, 11660, 33, 2013/09/30, 16:44:55.218, TA015928\QTAgent32.exe, UnitTestRunner.ExecuteDataDrivenTest: started.
+E, 11660, 33, 2013/09/30, 16:44:55.219, TA015928\QTAgent32.exe, Could not find a part of the path 'D:\Dropbox\GitHub\MSTestHacks\sam.thwaites_TA015928 2013-09-30 16_38_31\Out\RuntimeDataSources\MSTestHacks.Tests.RuntimeDataSource.SimpleObjects.PublicProperty.xml'. for XML data source D:\Dropbox\GitHub\MSTestHacks\sam.thwaites_TA015928 2013-09-30 16_38_31\Out\RuntimeDataSources\MSTestHacks.Tests.RuntimeDataSource.SimpleObjects.PublicProperty.xml
+V, 11660, 35, 2013/09/30, 16:44:55.227, TA015928\QTAgent32.exe, UnitTestExecuter.RunClassInitializeMethod: Acquiring m_runner.SyncRoot.
+V, 11660, 35, 2013/09/30, 16:44:55.227, TA015928\QTAgent32.exe, UnitTestExecuter.RunClassInitializeMethod: Acquired m_runner.SyncRoot.
+V, 11660, 35, 2013/09/30, 16:44:55.227, TA015928\QTAgent32.exe, UnitTestExecuter.RunClassInitializeMethod: Released m_runner.SyncRoot.
+V, 11660, 35, 2013/09/30, 16:44:55.227, TA015928\QTAgent32.exe, UnitTestRunner.ExecuteDataDrivenTest: started.
+E, 11660, 35, 2013/09/30, 16:44:55.228, TA015928\QTAgent32.exe, Could not find a part of the path 'D:\Dropbox\GitHub\MSTestHacks\sam.thwaites_TA015928 2013-09-30 16_38_31\Out\RuntimeDataSources\MSTestHacks.Tests.RuntimeDataSource.SimpleObjects2.PublicProperty.xml'. for XML data source D:\Dropbox\GitHub\MSTestHacks\sam.thwaites_TA015928 2013-09-30 16_38_31\Out\RuntimeDataSources\MSTestHacks.Tests.RuntimeDataSource.SimpleObjects2.PublicProperty.xml
+</DebugTrace>
+    </Output>
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="Complete_Object_Can_Be_Injected_From_Method" storage="src\mstesthacks.tests\bin\debug\mstesthacks.tests.dll" id="c27abec9-4bf1-d852-d3f8-d00f79abc3a7">
+      <Execution id="1fe2480e-1bc1-4ab3-a637-8971e7df4d09" />
+      <TestMethod codeBase="D:/Dropbox/GitHub/MSTestHacks/src/MSTestHacks.Tests/bin/Debug/MSTestHacks.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="MSTestHacks.Tests.RuntimeDataSource.ComplexObjects, MSTestHacks.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Complete_Object_Can_Be_Injected_From_Method" />
+      <DataSource settingName="MSTestHacks.Tests.RuntimeDataSource.ComplexObjects.ComplexMethod" providerInvariantName="System.Data.OleDb" />
+    </UnitTest>
+    <UnitTest name="Complete_Object_Can_Be_Injected_From_Property" storage="src\mstesthacks.tests\bin\debug\mstesthacks.tests.dll" id="fce6c715-ec9a-c028-65cb-33413e5341c5">
+      <Execution id="9e3b5dcd-d506-4847-bac6-707a3991fc8e" />
+      <TestMethod codeBase="D:/Dropbox/GitHub/MSTestHacks/src/MSTestHacks.Tests/bin/Debug/MSTestHacks.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="MSTestHacks.Tests.RuntimeDataSource.ComplexObjects, MSTestHacks.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Complete_Object_Can_Be_Injected_From_Property" />
+      <DataSource settingName="MSTestHacks.Tests.RuntimeDataSource.ComplexObjects.ComplexProperty" providerInvariantName="System.Data.OleDb" />
+    </UnitTest>
+    <UnitTest name="Test_Simple_Objects_Injected_From_PrivateProperty" storage="src\mstesthacks.tests\bin\debug\mstesthacks.tests.dll" id="77e1f679-096e-4308-9717-b974986c3da5">
+      <Execution id="223a576f-94e6-49e6-b679-4a1ac5b3b00a" />
+      <TestMethod codeBase="D:/Dropbox/GitHub/MSTestHacks/src/MSTestHacks.Tests/bin/Debug/MSTestHacks.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="MSTestHacks.Tests.RuntimeDataSource.SimpleObjects, MSTestHacks.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Test_Simple_Objects_Injected_From_PrivateProperty" />
+      <DataSource settingName="MSTestHacks.Tests.RuntimeDataSource.SimpleObjects.PrivateProperty" providerInvariantName="System.Data.OleDb" />
+    </UnitTest>
+    <UnitTest name="Test_Simple_Objects_Injected_From_PublicMethod" storage="src\mstesthacks.tests\bin\debug\mstesthacks.tests.dll" id="54bbbfbe-b77f-7d47-c4dc-718b8fac298b">
+      <Execution id="94429c7c-02c9-495f-89c6-7fadd3e65773" />
+      <TestMethod codeBase="D:/Dropbox/GitHub/MSTestHacks/src/MSTestHacks.Tests/bin/Debug/MSTestHacks.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="MSTestHacks.Tests.RuntimeDataSource.SimpleObjects, MSTestHacks.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Test_Simple_Objects_Injected_From_PublicMethod" />
+      <DataSource settingName="MSTestHacks.Tests.RuntimeDataSource.SimpleObjects.PublicMethod" providerInvariantName="System.Data.OleDb" />
+    </UnitTest>
+    <UnitTest name="Test_Simple_Objects_Injected_From_PublicProperty" storage="src\mstesthacks.tests\bin\debug\mstesthacks.tests.dll" id="e1870a7d-ac01-020e-c63a-9dd62761b54a">
+      <Execution id="6cf52fef-c0b2-4aee-9970-962bff9787c6" />
+      <TestMethod codeBase="D:/Dropbox/GitHub/MSTestHacks/src/MSTestHacks.Tests/bin/Debug/MSTestHacks.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="MSTestHacks.Tests.RuntimeDataSource.SimpleObjects2, MSTestHacks.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Test_Simple_Objects_Injected_From_PublicProperty" />
+      <DataSource settingName="MSTestHacks.Tests.RuntimeDataSource.SimpleObjects2.PublicProperty" providerInvariantName="System.Data.OleDb" />
+    </UnitTest>
+    <UnitTest name="Test_Simple_Objects_Injected_From_PrivateMethod" storage="src\mstesthacks.tests\bin\debug\mstesthacks.tests.dll" id="026c9d97-e6d6-9f0d-bae5-b648d8eb71d6">
+      <Execution id="d1d810d3-1fab-40c6-8e79-70aa459cc433" />
+      <TestMethod codeBase="D:/Dropbox/GitHub/MSTestHacks/src/MSTestHacks.Tests/bin/Debug/MSTestHacks.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="MSTestHacks.Tests.RuntimeDataSource.SimpleObjects, MSTestHacks.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Test_Simple_Objects_Injected_From_PrivateMethod" />
+      <DataSource settingName="MSTestHacks.Tests.RuntimeDataSource.SimpleObjects.PrivateMethod" providerInvariantName="System.Data.OleDb" />
+    </UnitTest>
+    <UnitTest name="Test_Simple_Objects_Injected_From_PublicField" storage="src\mstesthacks.tests\bin\debug\mstesthacks.tests.dll" id="78e8c9c4-8883-c797-c6ae-ad5f9a7d345f">
+      <Execution id="7ff551a1-ed55-44ab-99fa-82c52ea646b9" />
+      <TestMethod codeBase="D:/Dropbox/GitHub/MSTestHacks/src/MSTestHacks.Tests/bin/Debug/MSTestHacks.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="MSTestHacks.Tests.RuntimeDataSource.SimpleObjects, MSTestHacks.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Test_Simple_Objects_Injected_From_PublicField" />
+      <DataSource settingName="MSTestHacks.Tests.RuntimeDataSource.SimpleObjects.PublicField" providerInvariantName="System.Data.OleDb" />
+    </UnitTest>
+    <UnitTest name="Test_Simple_Objects_Injected_From_PublicProperty" storage="src\mstesthacks.tests\bin\debug\mstesthacks.tests.dll" id="df7a2f58-3af6-5345-d468-c66d025ae790">
+      <Execution id="f23c82da-e235-4a99-8961-a2b67e4fffb1" />
+      <TestMethod codeBase="D:/Dropbox/GitHub/MSTestHacks/src/MSTestHacks.Tests/bin/Debug/MSTestHacks.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="MSTestHacks.Tests.RuntimeDataSource.SimpleObjects, MSTestHacks.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Test_Simple_Objects_Injected_From_PublicProperty" />
+      <DataSource settingName="MSTestHacks.Tests.RuntimeDataSource.SimpleObjects.PublicProperty" providerInvariantName="System.Data.OleDb" />
+    </UnitTest>
+    <UnitTest name="MyTestMethod" storage="src\mstesthacks.tests\bin\debug\mstesthacks.tests.dll" id="1baa3bbf-7ef5-3f35-4c23-dd43c17570a8">
+      <Execution id="851b9775-75be-4ca5-9b02-05e34bc31166" />
+      <TestMethod codeBase="D:/Dropbox/GitHub/MSTestHacks/src/MSTestHacks.Tests/bin/Debug/MSTestHacks.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="MSTestHacks.Tests.RuntimeDataSource.InheritedTests, MSTestHacks.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="MyTestMethod" />
+      <DataSource settingName="MSTestHacks.Tests.RuntimeDataSource.InheritedTests.Simple2" providerInvariantName="System.Data.OleDb" />
+    </UnitTest>
+    <UnitTest name="Complete_Object_Can_Be_Injected_From_Field" storage="src\mstesthacks.tests\bin\debug\mstesthacks.tests.dll" id="4222e5ea-46a1-fd88-bb7e-4edbc900fb5e">
+      <Execution id="196638ff-c218-4dff-a1bf-9d508b262251" />
+      <TestMethod codeBase="D:/Dropbox/GitHub/MSTestHacks/src/MSTestHacks.Tests/bin/Debug/MSTestHacks.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="MSTestHacks.Tests.RuntimeDataSource.ComplexObjects, MSTestHacks.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Complete_Object_Can_Be_Injected_From_Field" />
+      <DataSource settingName="MSTestHacks.Tests.RuntimeDataSource.ComplexObjects.ComplexField" providerInvariantName="System.Data.OleDb" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="4222e5ea-46a1-fd88-bb7e-4edbc900fb5e" executionId="196638ff-c218-4dff-a1bf-9d508b262251" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c27abec9-4bf1-d852-d3f8-d00f79abc3a7" executionId="1fe2480e-1bc1-4ab3-a637-8971e7df4d09" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="fce6c715-ec9a-c028-65cb-33413e5341c5" executionId="9e3b5dcd-d506-4847-bac6-707a3991fc8e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1baa3bbf-7ef5-3f35-4c23-dd43c17570a8" executionId="851b9775-75be-4ca5-9b02-05e34bc31166" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="026c9d97-e6d6-9f0d-bae5-b648d8eb71d6" executionId="d1d810d3-1fab-40c6-8e79-70aa459cc433" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="77e1f679-096e-4308-9717-b974986c3da5" executionId="223a576f-94e6-49e6-b679-4a1ac5b3b00a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="78e8c9c4-8883-c797-c6ae-ad5f9a7d345f" executionId="7ff551a1-ed55-44ab-99fa-82c52ea646b9" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="54bbbfbe-b77f-7d47-c4dc-718b8fac298b" executionId="94429c7c-02c9-495f-89c6-7fadd3e65773" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="df7a2f58-3af6-5345-d468-c66d025ae790" executionId="f23c82da-e235-4a99-8961-a2b67e4fffb1" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e1870a7d-ac01-020e-c63a-9dd62761b54a" executionId="6cf52fef-c0b2-4aee-9970-962bff9787c6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="196638ff-c218-4dff-a1bf-9d508b262251" testId="4222e5ea-46a1-fd88-bb7e-4edbc900fb5e" testName="Complete_Object_Can_Be_Injected_From_Field" computerName="TA015928" startTime="2013-09-30T16:44:54.7276811+09:30" endTime="2013-09-30T16:44:55.1496811+09:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="196638ff-c218-4dff-a1bf-9d508b262251" resultType="DataDrivenTest">
+      <Output>
+        <ErrorInfo>
+          <Message>The unit test adapter failed to connect to the data source or to read the data. For more information on troubleshooting this error, see "Troubleshooting Data-Driven Unit Tests" (http://go.microsoft.com/fwlink/?LinkId=62412) in the MSDN Library.
+Error details: Object reference not set to an instance of an object.</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="1fe2480e-1bc1-4ab3-a637-8971e7df4d09" testId="c27abec9-4bf1-d852-d3f8-d00f79abc3a7" testName="Complete_Object_Can_Be_Injected_From_Method" computerName="TA015928" startTime="2013-09-30T16:44:55.1546811+09:30" endTime="2013-09-30T16:44:55.1626811+09:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1fe2480e-1bc1-4ab3-a637-8971e7df4d09" resultType="DataDrivenTest">
+      <Output>
+        <ErrorInfo>
+          <Message>The unit test adapter failed to connect to the data source or to read the data. For more information on troubleshooting this error, see "Troubleshooting Data-Driven Unit Tests" (http://go.microsoft.com/fwlink/?LinkId=62412) in the MSDN Library.
+Error details: Object reference not set to an instance of an object.</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="9e3b5dcd-d506-4847-bac6-707a3991fc8e" testId="fce6c715-ec9a-c028-65cb-33413e5341c5" testName="Complete_Object_Can_Be_Injected_From_Property" computerName="TA015928" startTime="2013-09-30T16:44:55.1666811+09:30" endTime="2013-09-30T16:44:55.1706811+09:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9e3b5dcd-d506-4847-bac6-707a3991fc8e" resultType="DataDrivenTest">
+      <Output>
+        <ErrorInfo>
+          <Message>The unit test adapter failed to connect to the data source or to read the data. For more information on troubleshooting this error, see "Troubleshooting Data-Driven Unit Tests" (http://go.microsoft.com/fwlink/?LinkId=62412) in the MSDN Library.
+Error details: Object reference not set to an instance of an object.</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="851b9775-75be-4ca5-9b02-05e34bc31166" testId="1baa3bbf-7ef5-3f35-4c23-dd43c17570a8" testName="MyTestMethod" computerName="TA015928" startTime="2013-09-30T16:44:55.1756811+09:30" endTime="2013-09-30T16:44:55.1806811+09:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="851b9775-75be-4ca5-9b02-05e34bc31166" resultType="DataDrivenTest">
+      <Output>
+        <ErrorInfo>
+          <Message>The unit test adapter failed to connect to the data source or to read the data. For more information on troubleshooting this error, see "Troubleshooting Data-Driven Unit Tests" (http://go.microsoft.com/fwlink/?LinkId=62412) in the MSDN Library.
+Error details: Object reference not set to an instance of an object.</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="d1d810d3-1fab-40c6-8e79-70aa459cc433" testId="026c9d97-e6d6-9f0d-bae5-b648d8eb71d6" testName="Test_Simple_Objects_Injected_From_PrivateMethod" computerName="TA015928" startTime="2013-09-30T16:44:55.1846811+09:30" endTime="2013-09-30T16:44:55.1886811+09:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d1d810d3-1fab-40c6-8e79-70aa459cc433" resultType="DataDrivenTest">
+      <Output>
+        <ErrorInfo>
+          <Message>The unit test adapter failed to connect to the data source or to read the data. For more information on troubleshooting this error, see "Troubleshooting Data-Driven Unit Tests" (http://go.microsoft.com/fwlink/?LinkId=62412) in the MSDN Library.
+Error details: Object reference not set to an instance of an object.</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="223a576f-94e6-49e6-b679-4a1ac5b3b00a" testId="77e1f679-096e-4308-9717-b974986c3da5" testName="Test_Simple_Objects_Injected_From_PrivateProperty" computerName="TA015928" startTime="2013-09-30T16:44:55.1926811+09:30" endTime="2013-09-30T16:44:55.1966811+09:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="223a576f-94e6-49e6-b679-4a1ac5b3b00a" resultType="DataDrivenTest">
+      <Output>
+        <ErrorInfo>
+          <Message>The unit test adapter failed to connect to the data source or to read the data. For more information on troubleshooting this error, see "Troubleshooting Data-Driven Unit Tests" (http://go.microsoft.com/fwlink/?LinkId=62412) in the MSDN Library.
+Error details: Object reference not set to an instance of an object.</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="7ff551a1-ed55-44ab-99fa-82c52ea646b9" testId="78e8c9c4-8883-c797-c6ae-ad5f9a7d345f" testName="Test_Simple_Objects_Injected_From_PublicField" computerName="TA015928" startTime="2013-09-30T16:44:55.2016811+09:30" endTime="2013-09-30T16:44:55.2056811+09:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7ff551a1-ed55-44ab-99fa-82c52ea646b9" resultType="DataDrivenTest">
+      <Output>
+        <ErrorInfo>
+          <Message>The unit test adapter failed to connect to the data source or to read the data. For more information on troubleshooting this error, see "Troubleshooting Data-Driven Unit Tests" (http://go.microsoft.com/fwlink/?LinkId=62412) in the MSDN Library.
+Error details: Object reference not set to an instance of an object.</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="94429c7c-02c9-495f-89c6-7fadd3e65773" testId="54bbbfbe-b77f-7d47-c4dc-718b8fac298b" testName="Test_Simple_Objects_Injected_From_PublicMethod" computerName="TA015928" startTime="2013-09-30T16:44:55.2096811+09:30" endTime="2013-09-30T16:44:55.2136811+09:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="94429c7c-02c9-495f-89c6-7fadd3e65773" resultType="DataDrivenTest">
+      <Output>
+        <ErrorInfo>
+          <Message>The unit test adapter failed to connect to the data source or to read the data. For more information on troubleshooting this error, see "Troubleshooting Data-Driven Unit Tests" (http://go.microsoft.com/fwlink/?LinkId=62412) in the MSDN Library.
+Error details: Object reference not set to an instance of an object.</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="f23c82da-e235-4a99-8961-a2b67e4fffb1" testId="df7a2f58-3af6-5345-d468-c66d025ae790" testName="Test_Simple_Objects_Injected_From_PublicProperty" computerName="TA015928" startTime="2013-09-30T16:44:55.2176811+09:30" endTime="2013-09-30T16:44:55.2216811+09:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f23c82da-e235-4a99-8961-a2b67e4fffb1" resultType="DataDrivenTest">
+      <Output>
+        <ErrorInfo>
+          <Message>The unit test adapter failed to connect to the data source or to read the data. For more information on troubleshooting this error, see "Troubleshooting Data-Driven Unit Tests" (http://go.microsoft.com/fwlink/?LinkId=62412) in the MSDN Library.
+Error details: Object reference not set to an instance of an object.</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="6cf52fef-c0b2-4aee-9970-962bff9787c6" testId="e1870a7d-ac01-020e-c63a-9dd62761b54a" testName="Test_Simple_Objects_Injected_From_PublicProperty" computerName="TA015928" startTime="2013-09-30T16:44:55.2256811+09:30" endTime="2013-09-30T16:44:55.2296811+09:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="6cf52fef-c0b2-4aee-9970-962bff9787c6" resultType="DataDrivenTest">
+      <Output>
+        <ErrorInfo>
+          <Message>The unit test adapter failed to connect to the data source or to read the data. For more information on troubleshooting this error, see "Troubleshooting Data-Driven Unit Tests" (http://go.microsoft.com/fwlink/?LinkId=62412) in the MSDN Library.
+Error details: Object reference not set to an instance of an object.</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+  </Results>
+</TestRun>
