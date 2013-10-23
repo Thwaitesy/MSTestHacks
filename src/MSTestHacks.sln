@@ -12,7 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{A9FFA8
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NuGet", "NuGet\NuGet.csproj", "{2B605D2F-7BAA-461F-A101-290E10371130}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSTestHacks.NuGet", "MSTestHacks.NuGet\MSTestHacks.NuGet.csproj", "{2B605D2F-7BAA-461F-A101-290E10371130}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

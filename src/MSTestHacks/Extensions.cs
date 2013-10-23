@@ -6,13 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MSTestHacks.RuntimeDataSource
+namespace MSTestHacks
 {
     public static class Extensions
     {
         public static T GetRuntimeDataSourceObject<T>(this TestContext testContext)
         {
-            return JsonConvert.DeserializeObject<T>(testContext.DataRow["Data"].ToString());
+            return JsonConvert.DeserializeObject<T>(testContext.DataRow["Payload"].ToString());
         }
     }
 }

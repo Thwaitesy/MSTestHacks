@@ -9,7 +9,6 @@ using System.Linq;
 namespace MSTestHacks.Tests.RuntimeDataSource
 {
     [TestClass]
-    [AttachRuntimeDataSources(typeof(SimpleObjects))]
     public class SimpleObjects : TestBase
     {
         const string PREFIX = "MSTestHacks.Tests.RuntimeDataSource.SimpleObjects.";

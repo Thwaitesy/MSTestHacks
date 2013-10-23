@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="RuntimeDataSource\ComplexObjects.cs" />
     <Compile Include="RuntimeDataSource\BaseClass.cs" />
+    <Compile Include="RuntimeDataSource\SharedDataSource.cs" />
     <Compile Include="RuntimeDataSource\SimpleObjects2.cs" />
     <Compile Include="RuntimeDataSource\InheritedTests.cs" />
     <Compile Include="RuntimeDataSource\SimpleObjects.cs" />
