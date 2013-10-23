@@ -6,7 +6,6 @@ using System.Collections.Generic;
 namespace MSTestHacks.Tests.RuntimeDataSource
 {
     [TestClass]
-    [AttachRuntimeDataSources(typeof(ComplexObjects))]
     public class ComplexObjects : TestBase
     {
         const string PREFIX = "MSTestHacks.Tests.RuntimeDataSource.ComplexObjects.";

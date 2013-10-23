@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 namespace MSTestHacks.Tests.RuntimeDataSource
 {
     [TestClass]
-    [AttachRuntimeDataSources(typeof(InheritedTests))]
     public class InheritedTests : BaseClass
     {
         const string PREFIX = "MSTestHacks.Tests.RuntimeDataSource.InheritedTests.";

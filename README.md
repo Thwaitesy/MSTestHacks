@@ -10,7 +10,7 @@ Features
 ==========================================================================
 ***RuntimeDataSource***
 
-A runtime data driven test as opposed to compile time. Just point your datasource to a property, field or method name that returns an IEnumerable and at runtime it will loop through the collection just like normal. (Think NUnit's [TestCaseSource](http://nunit.org/index.php?p=testCaseSource&r=2.5))
+A runtime data driven test as opposed to compile time. Just point your datasource to a property, field or method name that returns an IEnumerable and at runtime it will loop through the collection and just act like normal. (Think NUnit's [TestCaseSource](http://nunit.org/index.php?p=testCaseSource&r=2.5))
 
 Getting Started
 ==========================================================================
@@ -26,15 +26,8 @@ public class UnitTest1 : TestBase
 ```
 
 ###RuntimeDataSource
-**1)** Apply `AttachRuntimeDatasources` attribute to your test class, with the type of the class as its parameter. 
+**1)** Create a Property, Field or Method, that returns IEnumerable
 ```csharp
-[AttachRuntimeDataSources(typeof(UnitTest1))]
-public class UnitTest1 : TestBase
-```
-
-**2)** Create a Property, Field or Method, that returns IEnumerable
-```csharp
-[AttachRuntimeDataSources(typeof(UnitTest1))]
 public class UnitTest1 : TestBase
 {
     private IEnumerable<int> Stuff
@@ -48,7 +41,7 @@ public class UnitTest1 : TestBase
 }
 ```
 
-**3)** Add the `DataSource` attribute to your test method, pointing back to the IEnumerable<T> name above. This needs to be fully qualified to create uniqueness.
+**2)** Add the `DataSource` attribute to your test method, pointing back to the IEnumerable<T> name above. This needs to be fully qualified to create uniqueness.
 ```csharp
 [DataSource("Namespace.UnitTest1.Stuff")]
 public void TestMethod1()
@@ -62,11 +55,16 @@ public void TestMethod1()
 Roadmap
 ==========================================================================
 * Better asserts for exceptions
-* Injection of `AttachRuntimeDataSources` attribute at compile time using PostSharp
-* Injection of `DataSource` attribute at compile time using PostSharp
 
 Changelog
 ==========================================================================
+*1.1.1*
+- Removed the need for [AttachRuntimeDataSources(typeof(ClassName))] - dynamically finds the datasources.
+- Added some rudimentary debugging
+- Moved all outputed data down 1 directory to be self contained in a directory called MSTestHacks
+- GetRuntimeDataSourceObject<T> extenstion method is now in same namespace as testbase, so no need now for the using statement: `using MSTestHacks.RuntimeDataSources;` 
+- Made code a little more efficient
+
 *1.1.0 - (BREAKING CHANGE)*
 - Creating a datasource file per datasource, simplifies life
 - All datasources now have to be fully qualified, pointing to the IEnumerable<T>. This creates a unique datasource that was required in some instances. 

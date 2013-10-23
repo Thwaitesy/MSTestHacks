@@ -9,18 +9,22 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Remoting.Contexts;
+using System.Web.Compilation;
 using System.Xml.Linq;
 
 namespace MSTestHacks.RuntimeDataSource
 {
     [AttributeUsage(AttributeTargets.Class)]
-    public sealed class AttachRuntimeDataSources : ContextAttribute
+    internal sealed class AttachRuntimeDataSources : ContextAttribute
     {
-        private string DATASOURCES_PATH = Path.Combine(Path.GetDirectoryName(new UriBuilder(Assembly.GetExecutingAssembly().GetName().CodeBase).Uri.LocalPath), "RuntimeDataSources");
-        private static HashSet<Type> typesInitalized = new HashSet<Type>();
+        private static string DATASOURCES_PATH = Path.Combine(Tools.GetBaseDirectory(), "RuntimeDataSources");
+        private static List<string> dataSourcesInitalized = new List<string>();
 
-        public AttachRuntimeDataSources(Type type)
+        internal AttachRuntimeDataSources()
             : base("AttachRuntimeDataSources")
+        { }
+
+        static AttachRuntimeDataSources()
         {
             var appConfig = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
 
@@ -35,98 +39,116 @@ namespace MSTestHacks.RuntimeDataSource
             var connectionStringsSection = (ConnectionStringsSection)appConfig.Sections["connectionStrings"];
             var testConfigurationSection = (TestConfigurationSection)appConfig.Sections["microsoft.visualstudio.testtools"];
 
+            //Remove all connection strings that have the "_RuntimeDataSources" in the name.
+            var connectionsToRemove = connectionStringsSection.ConnectionStrings.Cast<ConnectionStringSettings>().Where(x=> x.Name.Contains("RuntimeDataSource")).ToList();
+            foreach (var con in connectionsToRemove)
+            {
+                connectionStringsSection.ConnectionStrings.Remove(con);
+            }
+
+            //Make sure dir exists
             if (!Directory.Exists(DATASOURCES_PATH))
                 Directory.CreateDirectory(DATASOURCES_PATH);
 
+            var assembliesToSearch = AppDomain.CurrentDomain.GetAssemblies()
+                                                            .SelectMany(assembly => assembly.GetTypes())
+                                                            .Where(type => type.IsSubclassOf(typeof(TestBase)))
+                                                            .Select(x => x.Assembly)
+                                                            .Distinct();
+
+            var dataSourceNames = assembliesToSearch.SelectMany(assembly => assembly.GetTypes())
+                                                    .Where(type => type.IsSubclassOf(typeof(TestBase)))
+                                                    .SelectMany(x => x.GetMethods())
+                                                    .SelectMany(a => a.GetCustomAttributes<DataSourceAttribute>())
+                                                    .Select(x => x.DataSourceSettingName)
+                                                    .Where(x => !string.IsNullOrWhiteSpace(x))
+                                                    .Distinct()
+                                                    .ToList();
+
+            Logger.WriteLine("Found {0} DataSources.", dataSourceNames.Count);
+
             var configChanged = false;
-
-            if (!typesInitalized.Contains(type))
+            foreach (var dataSourceName in dataSourceNames)
             {
-                typesInitalized.Add(type);
-
-                //Go through all the methods
-                foreach (var method in type.GetMethods())
+                try
                 {
-                    try
+                    var lastDotIndex = dataSourceName.LastIndexOf(".");
+                    if (lastDotIndex == -1)
+                        throw new Exception("Please specify the fully qualified type + property, method or field.");
+
+                    var dataName = dataSourceName.Substring(lastDotIndex + 1);
+                    var typeName = dataSourceName.Substring(0, lastDotIndex);
+
+                    var type = GetBusinessEntityType(assembliesToSearch, typeName);
+                    var data = new List<object>();
+                    foreach (var x in new ProviderReference(type, dataName).GetInstance())
                     {
-                        //Get the datasource attribute
-                        var attribute = method.GetCustomAttribute<DataSourceAttribute>();
-                        if (attribute != null && !string.IsNullOrWhiteSpace(attribute.DataSourceSettingName))
-                        {
-                            var dataSourceName = attribute.DataSourceSettingName;
-                            var connectionStringName = attribute.DataSourceSettingName + "_RuntimeDataSource";
-                            var dataSourceFilePath = Path.Combine(DATASOURCES_PATH, dataSourceName + ".xml");
-                            var lastIndexOfDot = dataSourceName.LastIndexOf(".");
-                            if (lastIndexOfDot == -1)
-                                throw new Exception("Please specify the fully qualified type + property.");
-
-                            var refernceName = dataSourceName.Substring(lastIndexOfDot + 1);
-                            var typeName = dataSourceName.Substring(0, lastIndexOfDot);
-
-                            if (typeName != type.FullName)
-                                continue;
-
-                            //Add connection string
-                            connectionStringsSection.ConnectionStrings.Add(new ConnectionStringSettings(connectionStringName, dataSourceFilePath, "Microsoft.VisualStudio.TestTools.DataSource.XML"));
-
-                            //Add datasource
-                            var dataSource = new DataSourceElement()
-                            {
-                                Name = dataSourceName,
-                                ConnectionString = connectionStringName,
-                                DataTableName = "Row",
-                                DataAccessMethod = "Sequential"
-                            };
-                            testConfigurationSection.DataSources.Add(dataSource);
-                            configChanged = true;
-
-                            //Get the source data
-                            var sourceData = new List<object>();
-
-                            //var lastIndexOfDot = dataSourceName.LastIndexOf(".");
-                            //var refernceName = dataSourceName.Substring(lastIndexOfDot);
-                            //var typeName = dataSourceName.Substring(0, lastIndexOfDot);
-                            //var typex = Type.GetType(typeName);
-                            foreach (var x in new ProviderReference(type, refernceName).GetInstance())
-                            {
-                                sourceData.Add(x);
-                            }
-
-                            //Create the file (if not there)
-                            var fileName = dataSourceFilePath;
-                            if (!File.Exists(fileName))
-                                File.WriteAllText(fileName, new XDocument(new XDeclaration("1.0", "utf-8", "true"), new XElement("Rows")).ToString());
-
-                            //Load the file
-                            var doc = XDocument.Load(fileName);
-
-                            //Remove all elements with the same name
-                            doc.Element("Rows").Elements(dataSource.DataTableName).Remove();
-
-                            //Add the iterations
-                            doc.Element("Rows").Add(
-
-                                from data in sourceData
-                                select new XElement(dataSource.DataTableName,
-                                       new XElement("Data", JsonConvert.SerializeObject(data))));
-
-                            //Save the file
-                            doc.Save(fileName);
-                        }
-
-                        if (configChanged)
-                        {
-                            appConfig.Save(ConfigurationSaveMode.Modified);
-                            ConfigurationManager.RefreshSection("connectionStrings");
-                            ConfigurationManager.RefreshSection("microsoft.visualstudio.testtools");
-                        }
+                        data.Add(x);
                     }
-                    catch (Exception ex)
+
+                    var connectionStringName = dataSourceName + "_RuntimeDataSource";
+                    var dataSourceFilePath = Path.Combine(DATASOURCES_PATH, dataSourceName + ".xml");
+
+                    //Add connection string
+                    connectionStringsSection.ConnectionStrings.Add(new ConnectionStringSettings(connectionStringName, dataSourceFilePath, "Microsoft.VisualStudio.TestTools.DataSource.XML"));
+
+                    //Add datasource
+                    var dataSource = new DataSourceElement()
                     {
-                        Trace.WriteLine(ex);
-                    }
+                        Name = dataSourceName,
+                        ConnectionString = connectionStringName,
+                        DataTableName = "Row",
+                        DataAccessMethod = "Sequential"
+                    };
+
+                    testConfigurationSection.DataSources.Add(dataSource);
+                    configChanged = true;
+
+                    //Create the file
+                    File.WriteAllText(dataSourceFilePath, new XDocument(new XDeclaration("1.0", "utf-8", "true"), new XElement("Iterations")).ToString());
+
+                    //Load the file
+                    var doc = XDocument.Load(dataSourceFilePath);
+
+                    //Add the iterations
+                    doc.Element("Iterations").Add(
+
+                        from iteration in data
+                        select new XElement(dataSource.DataTableName,
+                               new XElement("Payload", JsonConvert.SerializeObject(iteration))));
+
+                    //Save the file
+                    doc.Save(dataSourceFilePath);
+
+                    Logger.WriteLine("Successfully created datasource: {0}, Iteration Count: {1}", dataSourceName, data.Count);
                 }
+                catch (Exception ex)
+                {
+                    Logger.WriteLine(dataSourceName + ": " + ex.ToString());
+                }
+            
+            } //End of loop
+
+            if (configChanged)
+            {
+                appConfig.Save(ConfigurationSaveMode.Modified);
+                ConfigurationManager.RefreshSection("connectionStrings");
+                ConfigurationManager.RefreshSection("microsoft.visualstudio.testtools");
             }
+        }
+
+        private static Type GetBusinessEntityType(IEnumerable<Assembly> assemblies, string typeName)
+        {
+            Debug.Assert(typeName != null);
+
+            foreach (var assembly in assemblies)
+            {
+                Type t = assembly.GetType(typeName, false);
+                if (t != null)
+                    return t;
+            }
+
+            throw new ArgumentException("Type " + typeName + " doesn't exist in the current app domain");
         }
     }
 }

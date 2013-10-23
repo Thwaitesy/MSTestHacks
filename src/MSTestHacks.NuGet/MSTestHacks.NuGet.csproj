@@ -7,8 +7,8 @@
     <ProjectGuid>{2B605D2F-7BAA-461F-A101-290E10371130}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NuGet</RootNamespace>
-    <AssemblyName>NuGet</AssemblyName>
+    <RootNamespace>MSTestHacks.NuGet</RootNamespace>
+    <AssemblyName>MSTestHacks.NuGet</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
