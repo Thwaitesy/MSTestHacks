@@ -21,6 +21,7 @@ PM> Install-Package MSTestHacks
 
 **2)** Inherit your test class from `TestBase`
 ```csharp
+[TestClass]
 public class UnitTest1 : TestBase
 { }
 ```
@@ -28,6 +29,7 @@ public class UnitTest1 : TestBase
 ###RuntimeDataSource
 **1)** Create a Property, Field or Method, that returns IEnumerable
 ```csharp
+[TestClass]
 public class UnitTest1 : TestBase
 {
     private IEnumerable<int> Stuff
@@ -43,6 +45,7 @@ public class UnitTest1 : TestBase
 
 **2)** Add the `DataSource` attribute to your test method, pointing back to the IEnumerable<T> name above. This needs to be fully qualified to create uniqueness.
 ```csharp
+[TestMethod]
 [DataSource("Namespace.UnitTest1.Stuff")]
 public void TestMethod1()
 {
