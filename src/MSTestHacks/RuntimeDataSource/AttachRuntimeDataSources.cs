@@ -52,7 +52,6 @@ namespace MSTestHacks.RuntimeDataSource
 
             var assembliesToSearch = AppDomain.CurrentDomain.GetAssemblies()
                                                             .SelectMany(assembly => assembly.GetTypes())
-                                                            .Where(type => type.IsSubclassOf(typeof(TestBase)))
                                                             .Select(x => x.Assembly)
                                                             .Distinct();
 
@@ -126,8 +125,7 @@ namespace MSTestHacks.RuntimeDataSource
                 {
                     Logger.WriteLine(dataSourceName + ": " + ex.ToString());
                 }
-            
-            } //End of loop
+            }
 
             if (configChanged)
             {
