@@ -61,6 +61,9 @@ Roadmap
 
 Changelog
 ==========================================================================
+*1.1.2*
+- Added a fix so the datasources could point to an class that didnt inherit TestBase
+
 *1.1.1*
 - Removed the need for [AttachRuntimeDataSources(typeof(ClassName))] - dynamically finds the datasources.
 - Added some rudimentary debugging
