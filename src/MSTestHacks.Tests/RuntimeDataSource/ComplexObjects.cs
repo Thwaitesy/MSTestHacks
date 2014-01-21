@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MSTestHacks.RuntimeDataSource;
 using System.Collections.Generic;
 
 namespace MSTestHacks.Tests.RuntimeDataSource

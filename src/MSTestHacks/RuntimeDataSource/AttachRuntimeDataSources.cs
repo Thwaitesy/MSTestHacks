@@ -125,8 +125,7 @@ namespace MSTestHacks.RuntimeDataSource
                 {
                     Logger.WriteLine(dataSourceName + ": " + ex.ToString());
                 }
-            
-            } //End of loop
+            }
 
             if (configChanged)
             {
