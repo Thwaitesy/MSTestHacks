@@ -10,12 +10,12 @@
         <projectUrl>https://github.com/Thwaitesy/MSTestHacks</projectUrl>
         <iconUrl>https://nuget.org/Content/Images/packageDefaultIcon-50x50.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>A bunch of hacks to get around the deficiencies of MSTest and CodedUI.</description>
-        <summary>A bunch of hacks to get around the deficiencies of MSTest and CodedUI.</summary>
+        <description>A bunch of helpers to get around the deficiencies of MSTest and CodedUI. Features Dynamic/Runtime DataSource's, Jquery selectors for CodedUI and much much more!</description>
+        <summary>A bunch of helpers to get around the deficiencies of MSTest and CodedUI. Features Dynamic/Runtime DataSource's, Jquery selectors for CodedUI and much much more!</summary>
         <releaseNotes />
         <copyright>Copyright 2013</copyright>
         <language>en-US</language>
-        <tags>Test Testing UnitTest MSTest RowTest TestRows DataDrivenTest Extensions DataSource TestCaseSource CodedUI Selenium JQueryControl JQuerySelector HTMLControl UITesting</tags>
+        <tags>Test Testing UnitTest MSTest RowTest TestRows DataDrivenTest Extensions DataSource TestCaseSource CodedUI Selenium JQuery Selectors HTMLControl UITesting UITestControl</tags>
         <dependencies>
             <group targetFramework=".NETFramework4.5">
                 <dependency id="Newtonsoft.Json" version="5.0.4" />
