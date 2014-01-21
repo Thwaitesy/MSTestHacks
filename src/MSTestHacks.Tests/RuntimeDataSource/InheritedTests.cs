@@ -28,7 +28,7 @@ namespace MSTestHacks.Tests.RuntimeDataSource
 
         [TestMethod]
         [DataSource(PREFIX + "Simple2")]
-        public void MyTestMethod()
+        public void InheritedTest()
         {
             Testa();
         }

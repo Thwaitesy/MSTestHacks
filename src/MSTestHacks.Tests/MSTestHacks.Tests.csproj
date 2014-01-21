@@ -57,8 +57,11 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="CodedUI\Find.cs" />
-    <Compile Include="CodedUI\TestBase.cs" />
+    <Compile Include="CodedUI\App\RepeatingItem.cs" />
+    <Compile Include="CodedUI\FindTests.cs" />
+    <Compile Include="CodedUI\FindMatchingControlsTests.cs" />
+    <Compile Include="CodedUI\GetTests.cs" />
+    <Compile Include="CodedUI\WaitTests.cs" />
     <Compile Include="RuntimeDataSource\ComplexObjects.cs" />
     <Compile Include="RuntimeDataSource\BaseClass.cs" />
     <Compile Include="RuntimeDataSource\SharedDataSource.cs" />
