@@ -26,6 +26,9 @@ namespace MSTestHacks.RuntimeDataSource
 
         static AttachRuntimeDataSources()
         {
+            Logger.WriteLine("------------------");
+            Logger.WriteLine("Starting Execution");
+
             var appConfig = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
 
             //If the connectionStrings section doest exist, add it.
@@ -50,6 +53,9 @@ namespace MSTestHacks.RuntimeDataSource
             if (!Directory.Exists(DATASOURCES_PATH))
                 Directory.CreateDirectory(DATASOURCES_PATH);
 
+
+            //BUG: Other DLL's are not loaded into this app domain as its happening too early. We need to change this to
+            //search the directory or something similar.
             var assembliesToSearch = AppDomain.CurrentDomain.GetAssemblies()
                                                             .SelectMany(assembly => assembly.GetTypes())
                                                             .Select(x => x.Assembly)
@@ -64,13 +70,15 @@ namespace MSTestHacks.RuntimeDataSource
                                                     .Distinct()
                                                     .ToList();
 
-            Logger.WriteLine("Found {0} DataSources.", dataSourceNames.Count);
-
             var configChanged = false;
+            var totalTimeTaken = Stopwatch.StartNew();
+            var totalIterationCount = 0;
             foreach (var dataSourceName in dataSourceNames)
             {
                 try
                 {
+                    var individualTimeTaken = Stopwatch.StartNew();
+
                     var lastDotIndex = dataSourceName.LastIndexOf(".");
                     if (lastDotIndex == -1)
                         throw new Exception("Please specify the fully qualified type + property, method or field.");
@@ -119,7 +127,8 @@ namespace MSTestHacks.RuntimeDataSource
                     //Save the file
                     doc.Save(dataSourceFilePath);
 
-                    Logger.WriteLine("Successfully created datasource: {0}, Iteration Count: {1}", dataSourceName, data.Count);
+                    totalIterationCount += data.Count;
+                    Logger.WriteLine("Successfully created datasource: {0}, Iteration Count: {1}, Elapsed Time : {2}", dataSourceName, data.Count, individualTimeTaken.Elapsed);
                 }
                 catch (Exception ex)
                 {
@@ -133,6 +142,10 @@ namespace MSTestHacks.RuntimeDataSource
                 ConfigurationManager.RefreshSection("connectionStrings");
                 ConfigurationManager.RefreshSection("microsoft.visualstudio.testtools");
             }
+
+            Logger.WriteLine("No of Assemblies Searched: {0}, No of DataSources Found: {1}, No of Iterations Created: {2}, Total Time Taken: {3}.", assembliesToSearch.Count(), dataSourceNames.Count, totalIterationCount, totalTimeTaken.Elapsed);
+            Logger.WriteLine("Finishing Execution");
+            Logger.WriteLine("------------------");
         }
 
         private static Type GetBusinessEntityType(IEnumerable<Assembly> assemblies, string typeName)

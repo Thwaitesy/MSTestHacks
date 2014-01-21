@@ -6,13 +6,13 @@ using System.Linq;
 
 namespace Microsoft.VisualStudio.TestTools.UITesting.HtmlControls
 {
-    public class JHtmlControl : HtmlControl, IJqueryControl
+    public class JHtmlLabel : HtmlLabel, IJqueryControl
     {
-        public JHtmlControl(UITestControl parent)
+        public JHtmlLabel(UITestControl parent)
             : base(parent)
         { }
 
-        public JHtmlControl(UITestControl parent, string selector)
+        public JHtmlLabel(UITestControl parent, string selector)
             : this(parent)
         {
             this.SearchProperties[PropertyNames.Selector] = selector;
@@ -26,7 +26,7 @@ namespace Microsoft.VisualStudio.TestTools.UITesting.HtmlControls
 
         public new UITestControlCollection FindMatchingControls()
         {
-            return this.FindMatchingControls<JHtmlControl>().ToCollection();
+            return this.FindMatchingControls<JHtmlLabel>().ToCollection();
         }
 
         public new partial class PropertyNames : HtmlControl.PropertyNames

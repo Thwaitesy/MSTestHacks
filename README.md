@@ -1,10 +1,10 @@
 Overview
 ==========================================================================
-Just a bunch of hacks to get around the deficiencies of MSTest. 
+Just a bunch of hacks to get around the deficiencies of MSTest & CodedUI. 
 
-Hopefully for those of us that have to work inside the constrainsts of MSTest, this library should ease our pain. (Just a little) 
+Hopefully for those of us that have to work inside the constrainsts of MSTest & CodedUI, this library should ease our pain. (Just a little) 
 
-Check out the tests project for samples
+Check out the tests project for a few samples
 
 Features
 ==========================================================================
@@ -12,22 +12,26 @@ Features
 
 A runtime data driven test as opposed to compile time. Just point your datasource to a property, field or method name that returns an IEnumerable and at runtime it will loop through the collection and just act like normal. (Think NUnit's [TestCaseSource](http://nunit.org/index.php?p=testCaseSource&r=2.5))
 
+***CodedUI JQuery Selectors***
+
+Provides an easier way to find CodedUI Controls via jquery selectors.
+
 Getting Started
 ==========================================================================
-**1)** [Install NuGet](http://docs.nuget.org/docs/start-here/installing-nuget). Then, install MSTestHacks from the package manager console:
+[Install NuGet](http://docs.nuget.org/docs/start-here/installing-nuget). Then, install MSTestHacks from the package manager console:
 ```csharp
 PM> Install-Package MSTestHacks
 ``` 
 
-**2)** Inherit your test class from `TestBase`
+###Runtime DataSource
+**1)** You MUST inherit your test class from `TestBase`
 ```csharp
 [TestClass]
 public class UnitTest1 : TestBase
 { }
 ```
 
-###RuntimeDataSource
-**1)** Create a Property, Field or Method, that returns IEnumerable
+**2)** Create a Property, Field or Method, that returns an IEnumerable<T>
 ```csharp
 [TestClass]
 public class UnitTest1 : TestBase
@@ -36,14 +40,14 @@ public class UnitTest1 : TestBase
     {
         get
         {
-            //This could do anything, get a dynamic list from anywhere....
+            //This could do anything, fetch a dynamic list from anywhere....
             return new List<int> { 1, 2, 3 };
         }
     }
 }
 ```
 
-**2)** Add the `DataSource` attribute to your test method, pointing back to the IEnumerable<T> name above. This needs to be fully qualified to create uniqueness.
+**3)** Add the `DataSource` attribute to your test method, pointing back to the IEnumerable<T> name created earlier. This needs to be fully qualified.
 ```csharp
 [TestMethod]
 [DataSource("Namespace.UnitTest1.Stuff")]
@@ -54,13 +58,26 @@ public void TestMethod1()
     Assert.IsNotNull(number);
 }
 ```
+**Explanation**
+When each TestBase inherited class is initialised, a process gets run to create an XML file for each datasource. Then it dynamically links each datasource up to the XML file. So 
+when each test executes it loops over the datasource like it would normally in MSTest. The "GetRuntimeDataSourceObject" extension method is just a convenient helper to get 
+the object back out of the datasource using JSON deserialisation. Simple really :)
+
+###CodedUI JQuery Selectors
+TODO
 
 Roadmap
 ==========================================================================
 * Better asserts for exceptions
+* Support for all CodedUI HtmlControls -> JHtmlControls
+* Simple CodedUI Framework -> Page, Navigate etc
 
 Changelog
 ==========================================================================
+*2.0.0*
+- More logging for runtime datasource around timing etc
+- Introduced CodedUI Jquery controls for finding controls via jquery selectors
+
 *1.1.2*
 - Added a fix so the datasources could point to an class that didnt inherit TestBase
 

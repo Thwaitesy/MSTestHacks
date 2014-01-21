@@ -4,12 +4,57 @@
 <head>
     <meta charset="utf-8" />
     <title>MSTestHacks TestPage</title>
+
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 </head>
 <body>
 
-    <div id="first-div">
+    <div id="first-div-id" class="first-div-class">
         <span>This is the content of the first div.</span>
     </div>
+
+    <span class="contentx">Standard text Content</span>
+
+    <div id="inserted-stuff">
+    </div>
+
+    <div id="removed-stuff">
+        <b class='removed-me'>this is content removed via javascript after 10 seconds</b>
+    </div>
+
+    <div class="repeatingItem">
+        <div class="partA">this is repeating element 1A</div>
+        <div class="partB">this is repeating element 1B</div>
+    </div>
+
+    <div class="repeatingItem">
+        <div class="partA">this is repeating element 2A</div>
+        <div class="partB">this is repeating element 2B</div>
+    </div>
+
+    <div class="repeatingItem">
+        <div class="partA">this is repeating element 3A</div>
+        <div class="partB">this is repeating element 3B</div>
+    </div>
+
+    <script>
+        $(function () {
+            setTimeout(function () {
+
+                $("#inserted-stuff")
+                    .html("<b class='add-me'>this is content added via javascript after 10 seconds</b>");
+
+                $("#removed-stuff .removed-me").remove();
+
+                // remove a repeating element
+                $(".repeatingItem:eq(1)")
+                    .remove();
+
+                $(".contentx").html("Standard changed Content");
+
+            }, 10000);
+        });
+        </script>
 
 </body>
 </html>
