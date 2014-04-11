@@ -2,8 +2,8 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>MSTestHacks</id>
-        <version>2.0.0</version>
-        <title>MSTest & CodedUI Hacks</title>
+        <version>2.1.0</version>
+        <title>MSTest and CodedUI Hacks</title>
         <authors>Sam Thwaites, Corey Warner</authors>
         <owners>Sam Thwaites</owners>
         <licenseUrl>https://github.com/Thwaitesy/MSTestHacks/blob/master/LICENCE</licenseUrl>

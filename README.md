@@ -74,6 +74,10 @@ Roadmap
 
 Changelog
 ==========================================================================
+
+*2.1.0*
+- Made references to MS TestTools not point to "Specific" versions e.g. VS2012 references
+
 *2.0.0*
 - More logging for runtime datasource around timing etc
 - Introduced CodedUI Jquery controls for finding controls via jquery selectors
