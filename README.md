@@ -2,9 +2,9 @@
 
 Overview
 ==========================================================================
-Just a bunch of hacks to get around the deficiencies of MSTest & CodedUI. 
+Just a bunch of hacks to get around the deficiencies of MSTest. 
 
-Hopefully for those of us that have to work inside the constrainsts of MSTest & CodedUI, this library should ease our pain. (Just a little) 
+Hopefully for those of us that have to work inside the constrainsts of MSTest, this library should ease our pain. (Just a little) 
 
 Check out the tests project for a few samples
 
@@ -13,10 +13,6 @@ Features
 ***RuntimeDataSource***
 
 A runtime data driven test as opposed to compile time. Just point your datasource to a property, field or method name that returns an IEnumerable and at runtime it will loop through the collection and just act like normal. (Think NUnit's [TestCaseSource](http://nunit.org/index.php?p=testCaseSource&r=2.5))
-
-***CodedUI JQuery Selectors***
-
-Provides an easier way to find CodedUI Controls via jquery selectors.
 
 Getting Started
 ==========================================================================
@@ -65,18 +61,12 @@ When each TestBase inherited class is initialised, a process gets run to create 
 when each test executes it loops over the datasource like it would normally in MSTest. The "GetRuntimeDataSourceObject" extension method is just a convenient helper to get 
 the object back out of the datasource using JSON deserialisation. Simple really :)
 
-###CodedUI JQuery Selectors
-TODO
-
-Roadmap
-==========================================================================
-* Better asserts for exceptions
-* Support for all CodedUI HtmlControls -> JHtmlControls
-* Simple CodedUI Framework -> Page, Navigate etc
-
 Changelog
 ==========================================================================
-
+*2.2.1.**
+- Added better exception support
+- Removed CodedUI Support (See MainFrame)
+ 
 *2.1.0*
 - Made references to MS TestTools not point to "Specific" versions e.g. VS2012 references
 
