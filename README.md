@@ -1,3 +1,5 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/pjruep5140tv84nd)](https://ci.appveyor.com/project/Thwaitesy/mstesthacks)
+
 Overview
 ==========================================================================
 Just a bunch of hacks to get around the deficiencies of MSTest & CodedUI. 
