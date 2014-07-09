@@ -2,6 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>MSTestHacks</id>
+        <version>$version$</version>
         <title>MSTest and CodedUI Hacks</title>
         <authors>Sam Thwaites, Corey Warner</authors>
         <owners>Sam Thwaites</owners>
