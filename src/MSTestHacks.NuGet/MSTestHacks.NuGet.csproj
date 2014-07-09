@@ -39,7 +39,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Package.nuspec">
+    <None Include="MSTestHacks.nuspec">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
