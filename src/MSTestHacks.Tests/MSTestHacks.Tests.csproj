@@ -65,11 +65,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="CodedUI\App\RepeatingItem.cs" />
-    <Compile Include="CodedUI\FindTests.cs" />
-    <Compile Include="CodedUI\FindMatchingControlsTests.cs" />
-    <Compile Include="CodedUI\GetTests.cs" />
-    <Compile Include="CodedUI\WaitTests.cs" />
+    <Compile Include="Asserts\ExceptionAssertTests.cs" />
     <Compile Include="RuntimeDataSource\ComplexObjects.cs" />
     <Compile Include="RuntimeDataSource\BaseClass.cs" />
     <Compile Include="RuntimeDataSource\SharedDataSource.cs" />
@@ -83,11 +79,6 @@
       <Project>{d1e314c1-bbd7-4d14-a577-d8f09de68fd3}</Project>
       <Name>MSTestHacks</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="CodedUI\App\TestPage.html">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
