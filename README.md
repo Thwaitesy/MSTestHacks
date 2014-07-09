@@ -63,7 +63,7 @@ the object back out of the datasource using JSON deserialisation. Simple really 
 
 Changelog
 ==========================================================================
-*2.2.1.**
+*2.2.19.**
 - Added better exception support
 - Removed CodedUI Support (See MainFrame)
  
