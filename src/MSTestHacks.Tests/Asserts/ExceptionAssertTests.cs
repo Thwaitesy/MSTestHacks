@@ -43,5 +43,32 @@ namespace MSTestHacks.Tests.Asserts
             // Act & Assert
             ExceptionAssert.Throws<ArgumentException>(() => method("some param"));
         }
+
+        [TestMethod]
+        public void MethodThrowsExceptionValidatorWorks()
+        {
+            // Arrange
+            Action<string> method = (x) => { throw new Exception("This is silly"); };
+
+            // Act & Assert
+            ExceptionAssert.Throws<Exception>(() => method("some param"), x => x.Message == "This is silly");
+        }
+
+        [TestMethod]
+        public void MethodThrowsExceptionValidatorWorksWhenNotPassing()
+        {
+            // Arrange
+            Action<string> method = (x) => { throw new Exception("This is sillyxxx"); };
+
+            // Act & Assert
+            try
+            {
+                ExceptionAssert.Throws<Exception>(() => method("some param"), x => x.Message == "This is silly");
+            }
+            catch(Exception ex)
+            {
+                Assert.IsTrue(ex.Message.Contains("Validator for expected exception failed."));
+            }
+        }
     }
 }

@@ -77,5 +77,28 @@ namespace Microsoft.VisualStudio.TestTools.UnitTesting
         {
             return Throws<Exception>(blockToExecute, expectedMessage);
         }
+
+        /// <summary>
+        /// Checks to make sure that the input delegate throws a exception.
+        /// </summary>
+        /// <param name="blockToExecute">The block of code to execute to generate the exception.</param>
+        /// <param name="validatorForException">A validator for the expected message.</param>
+        /// <returns>The exception that was thrown.</returns>
+        public static TException Throws<TException>(Action blockToExecute, Func<TException, bool> validatorForException) where TException : System.Exception
+        {
+            try
+            {
+                blockToExecute();
+            }
+            catch (Exception ex)
+            {
+                Assert.IsTrue(ex is TException, "Expected exception of type " + typeof(TException) + " but type of " + ex.GetType() + " was thrown instead.");
+                Assert.IsTrue(validatorForException(ex as TException), "Validator for expected exception failed.");
+                return ex as TException;
+            }
+
+            Assert.Fail("Expected exception of type " + typeof(TException) + " but no exception was thrown.");
+            return default(TException);
+        }
     }
 }
