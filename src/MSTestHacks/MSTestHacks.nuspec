@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>MSTestHacks</id>
-        <version>$version$</version>
+        <version>1.0.1</version>
         <title>MSTest Hacks</title>
         <authors>Sam Thwaites, Corey Warner</authors>
         <owners>Sam Thwaites</owners>
@@ -13,17 +13,19 @@
         <description>A bunch of helpers to get around the deficiencies of MSTest. Features Dynamic/Runtime DataSource's, better exception support and much much more!</description>
         <summary>A bunch of helpers to get around the deficiencies of MSTest. Features Dynamic/Runtime DataSource's, better exception support and much much more!</summary>
         <releaseNotes />
-        <copyright>Copyright 2013</copyright>
+        <copyright>Copyright 2014</copyright>
         <language>en-US</language>
         <tags>Test Testing UnitTest MSTest RowTest TestRows DataDrivenTest Extensions DataSource TestCaseSource Assert ExceptionAssert</tags>
         <dependencies>
-            <group targetFramework=".NETFramework4.5">
+            <group>
                 <dependency id="Newtonsoft.Json" version="5.0.4" />
             </group>
         </dependencies>
     </metadata>
     <files>
-      <file src="bin\Debug\MSTestHacks.dll" target="lib\net45\MSTestHacks.dll" />
-      <file src="bin\Debug\MSTestHacks.pdb" target="lib\net45\MSTestHacks.pdb" />
+      <file src="bin\Release\NET45\MSTestHacks.dll" target="lib\net45\MSTestHacks.dll" />
+      <file src="bin\Release\NET45\MSTestHacks.pdb" target="lib\net45\MSTestHacks.pdb" />
+      <file src="bin\Release\NET40\MSTestHacks.dll" target="lib\net40\MSTestHacks.dll" />
+      <file src="bin\Release\NET40\MSTestHacks.pdb" target="lib\net40\MSTestHacks.pdb" />
     </files>
 </package>

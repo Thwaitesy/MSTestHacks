@@ -64,8 +64,8 @@ namespace MSTestHacks.RuntimeDataSource
             var dataSourceNames = assembliesToSearch.SelectMany(assembly => assembly.GetTypes())
                                                     .Where(type => type.IsSubclassOf(typeof(TestBase)))
                                                     .SelectMany(x => x.GetMethods())
-                                                    .SelectMany(a => a.GetCustomAttributes<DataSourceAttribute>())
-                                                    .Select(x => x.DataSourceSettingName)
+                                                    .SelectMany(a => a.GetCustomAttributes(typeof(DataSourceAttribute), false))
+                                                    .Select(x => ((DataSourceAttribute)x).DataSourceSettingName)
                                                     .Where(x => !string.IsNullOrWhiteSpace(x))
                                                     .Distinct()
                                                     .ToList();
