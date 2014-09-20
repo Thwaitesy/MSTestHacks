@@ -63,7 +63,10 @@ the object back out of the datasource using JSON deserialisation. Simple really 
 
 Changelog
 ==========================================================================
-*2.2.19.**
+*2.3.1*
+- Added support for .net 40 framework
+
+*2.2.19*
 - Added better exception support
 - Removed CodedUI Support (See MainFrame)
  
