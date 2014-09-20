@@ -10,9 +10,13 @@ Check out the tests project for a few samples
 
 Features
 ==========================================================================
-***RuntimeDataSource***
+***Runtime DataSource***
 
 A runtime data driven test as opposed to compile time. Just point your datasource to a property, field or method name that returns an IEnumerable and at runtime it will loop through the collection and just act like normal. (Think NUnit's [TestCaseSource](http://nunit.org/index.php?p=testCaseSource&r=2.5))
+
+***Exception Assert***
+
+Provides a much easier way to throw exceptions and verify the type, and information within the exception itself.
 
 Getting Started
 ==========================================================================
@@ -22,6 +26,8 @@ PM> Install-Package MSTestHacks
 ``` 
 
 ###Runtime DataSource
+*Note:* App.config or Web.config must be in the project to provide the dynamic linking.
+
 **1)** You MUST inherit your test class from `TestBase`
 ```csharp
 [TestClass]
@@ -57,9 +63,33 @@ public void TestMethod1()
 }
 ```
 **Explanation**
-When each TestBase inherited class is initialised, a process gets run to create an XML file for each datasource. Then it dynamically links each datasource up to the XML file. So 
+When each TestBase inherited class is initialised, a process gets run to create an XML file for each datasource attribute. It then dynamically links each datasource up to the XML file. So 
 when each test executes it loops over the datasource like it would normally in MSTest. The "GetRuntimeDataSourceObject" extension method is just a convenient helper to get 
 the object back out of the datasource using JSON deserialisation. Simple really :)
+
+###Exception Assert
+```csharp
+//Verify the type and message.
+[TestMethod]
+public void MethodThrowsSpecificExceptionWithExpectedExceptionMessage()
+{
+	var expectedMessage = "crap.";
+	var action = new Action(() => { throw new StackOverflowException(expectedMessage); });
+
+	ExceptionAssert.Throws<StackOverflowException>(action, expectedMessage);
+}
+
+//Verify the type and anything about the exception with the 'validator'
+[TestMethod]
+public void MethodThrowsExceptionAndTheValidatorWorks()
+{
+	// Arrange
+	Action action = () => { throw new Exception("This is silly"); };
+
+	// Act & Assert
+	ExceptionAssert.Throws<Exception>(action, validatorForException: x => x.Message == "This is silly");
+}
+```
 
 Changelog
 ==========================================================================
@@ -67,8 +97,8 @@ Changelog
 - Added support for .net 40 framework
 
 *2.2.19*
-- Added better exception support
-- Removed CodedUI Support (See MainFrame)
+- Added Exception Assert Feature
+- Removed CodedUI Support (See [AFrame](https://github.com/Thwaitesy/AFrame))
  
 *2.1.0*
 - Made references to MS TestTools not point to "Specific" versions e.g. VS2012 references

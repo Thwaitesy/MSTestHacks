@@ -30,8 +30,9 @@ namespace MSTestHacks.Tests.Asserts
         public void MethodThrowsSpecificExceptionWithExpectedExceptionMessage()
         {
             var expectedMessage = "crap.";
+            var action = new Action(() => { throw new StackOverflowException(expectedMessage); });
 
-            ExceptionAssert.Throws<StackOverflowException>(() => { throw new StackOverflowException(expectedMessage); }, expectedMessage);
+            ExceptionAssert.Throws<StackOverflowException>(action, expectedMessage);
         }
 
         [TestMethod]
@@ -45,13 +46,13 @@ namespace MSTestHacks.Tests.Asserts
         }
 
         [TestMethod]
-        public void MethodThrowsExceptionValidatorWorks()
+        public void MethodThrowsExceptionAndTheValidatorWorks()
         {
             // Arrange
-            Action<string> method = (x) => { throw new Exception("This is silly"); };
+            Action action = () => { throw new Exception("This is silly"); };
 
             // Act & Assert
-            ExceptionAssert.Throws<Exception>(() => method("some param"), x => x.Message == "This is silly");
+            ExceptionAssert.Throws<Exception>(action, validatorForException: x => x.Message == "This is silly");
         }
 
         [TestMethod]
