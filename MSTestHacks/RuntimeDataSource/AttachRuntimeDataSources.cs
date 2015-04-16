@@ -9,7 +9,6 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Remoting.Contexts;
-using System.Web.Compilation;
 using System.Xml.Linq;
 
 namespace MSTestHacks.RuntimeDataSource
