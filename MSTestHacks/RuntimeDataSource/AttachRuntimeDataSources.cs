@@ -30,11 +30,11 @@ namespace MSTestHacks.RuntimeDataSource
 
             var appConfig = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
 
-            //If the connectionStrings section doest exist, add it.
+            //If the connectionStrings section doesn't exist, add it.
             if (!appConfig.Sections.Cast<ConfigurationSection>().Any(x => x.SectionInformation.Name == "connectionStrings"))
                 appConfig.Sections.Add("connectionStrings", new ConnectionStringsSection());
 
-            //If the test tools section doest exist, add it.
+            //If the test tools section doesn't exist, add it.
             if (!appConfig.Sections.Cast<ConfigurationSection>().Any(x => x.SectionInformation.Name == "microsoft.visualstudio.testtools"))
                 appConfig.Sections.Add("microsoft.visualstudio.testtools", new Microsoft.VisualStudio.TestTools.UnitTesting.TestConfigurationSection());
 
@@ -93,7 +93,7 @@ namespace MSTestHacks.RuntimeDataSource
                     }
 
                     var connectionStringName = dataSourceName + "_RuntimeDataSource";
-                    var dataSourceFilePath = Path.Combine(DATASOURCES_PATH, dataSourceName + ".xml");
+                    var dataSourceFilePath = Path.Combine(DATASOURCES_PATH, Guid.NewGuid().ToString("N") + ".xml");
 
                     //Add connection string
                     connectionStringsSection.ConnectionStrings.Add(new ConnectionStringSettings(connectionStringName, dataSourceFilePath, "Microsoft.VisualStudio.TestTools.DataSource.XML"));
@@ -110,8 +110,12 @@ namespace MSTestHacks.RuntimeDataSource
                     testConfigurationSection.DataSources.Add(dataSource);
                     configChanged = true;
 
+                    //Create the iterations element and set the dataSourceName as an attribute for debugging.
+                    var iterationsElement = new XElement("Iterations");
+                    iterationsElement.SetAttributeValue("DataSourceName", dataSourceName);
+
                     //Create the file
-                    File.WriteAllText(dataSourceFilePath, new XDocument(new XDeclaration("1.0", "utf-8", "true"), new XElement("Iterations")).ToString());
+                    File.WriteAllText(dataSourceFilePath, new XDocument(new XDeclaration("1.0", "utf-8", "true"), iterationsElement).ToString());
 
                     //Load the file
                     var doc = XDocument.Load(dataSourceFilePath);
