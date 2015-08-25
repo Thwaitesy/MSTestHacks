@@ -93,6 +93,9 @@ public void MethodThrowsExceptionAndTheValidatorWorks()
 
 Changelog
 ==========================================================================
+*2.3.8*
+- Fixed datasource file paths too long issues
+- 
 *2.3.1*
 - Added support for .net 40 framework
 
