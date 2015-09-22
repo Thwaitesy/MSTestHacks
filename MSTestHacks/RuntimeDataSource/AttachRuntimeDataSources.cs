@@ -56,6 +56,7 @@ namespace MSTestHacks.RuntimeDataSource
             //BUG: Other DLL's are not loaded into this app domain as its happening too early. We need to change this to
             //search the directory or something similar.
             var assembliesToSearch = AppDomain.CurrentDomain.GetAssemblies()
+                                                            .Where(a => !a.FullName.ToLowerInvariant().StartsWith("microsoft"))
                                                             .SelectMany(assembly => assembly.GetTypes())
                                                             .Select(x => x.Assembly)
                                                             .Distinct();
