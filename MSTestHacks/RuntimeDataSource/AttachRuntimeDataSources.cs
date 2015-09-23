@@ -57,11 +57,11 @@ namespace MSTestHacks.RuntimeDataSource
             //search the directory or something similar.
             var assembliesToSearch = AppDomain.CurrentDomain.GetAssemblies()
                                                             .Where(a => !a.FullName.ToLowerInvariant().StartsWith("microsoft"))
-                                                            .SelectMany(assembly => assembly.GetTypes())
+                                                            .SelectMany(GetLoadableTypes)
                                                             .Select(x => x.Assembly)
                                                             .Distinct();
 
-            var dataSourceNames = assembliesToSearch.SelectMany(assembly => assembly.GetTypes())
+            var dataSourceNames = assembliesToSearch.SelectMany(GetLoadableTypes)
                                                     .Where(type => type.IsSubclassOf(typeof(TestBase)))
                                                     .SelectMany(x => x.GetMethods())
                                                     .SelectMany(a => a.GetCustomAttributes(typeof(DataSourceAttribute), false))
@@ -150,6 +150,19 @@ namespace MSTestHacks.RuntimeDataSource
             Logger.WriteLine("No of Assemblies Searched: {0}, No of DataSources Found: {1}, No of Iterations Created: {2}, Total Time Taken: {3}.", assembliesToSearch.Count(), dataSourceNames.Count, totalIterationCount, totalTimeTaken.Elapsed);
             Logger.WriteLine("Finishing Execution");
             Logger.WriteLine("------------------");
+        }
+
+        private static IEnumerable<Type> GetLoadableTypes(Assembly assembly)
+        {
+            try
+            {
+                return assembly.GetTypes();
+            }
+            catch ( ReflectionTypeLoadException ex )
+            {
+                Logger.WriteLine(ex.Source + " threw " + ex.Message + ": " + ex.LoaderExceptions.Aggregate("", (e, s) => s + e.ToString()));
+                return Enumerable.Empty<Type>();
+            }
         }
 
         private static Type GetBusinessEntityType(IEnumerable<Assembly> assemblies, string typeName)
