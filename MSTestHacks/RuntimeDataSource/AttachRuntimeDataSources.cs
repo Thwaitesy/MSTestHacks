@@ -10,6 +10,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.Remoting.Contexts;
 using System.Xml.Linq;
+using System.Text.RegularExpressions;
 
 namespace MSTestHacks.RuntimeDataSource
 {
@@ -36,13 +37,13 @@ namespace MSTestHacks.RuntimeDataSource
 
             //If the test tools section doesn't exist, add it.
             if (!appConfig.Sections.Cast<ConfigurationSection>().Any(x => x.SectionInformation.Name == "microsoft.visualstudio.testtools"))
-                appConfig.Sections.Add("microsoft.visualstudio.testtools", new Microsoft.VisualStudio.TestTools.UnitTesting.TestConfigurationSection());
+                appConfig.Sections.Add("microsoft.visualstudio.testtools", new TestConfigurationSection());
 
             var connectionStringsSection = (ConnectionStringsSection)appConfig.Sections["connectionStrings"];
             var testConfigurationSection = (TestConfigurationSection)appConfig.Sections["microsoft.visualstudio.testtools"];
 
             //Remove all connection strings that have the "_RuntimeDataSources" in the name.
-            var connectionsToRemove = connectionStringsSection.ConnectionStrings.Cast<ConnectionStringSettings>().Where(x=> x.Name.Contains("RuntimeDataSource")).ToList();
+            var connectionsToRemove = connectionStringsSection.ConnectionStrings.Cast<ConnectionStringSettings>().Where(x => x.Name.Contains("RuntimeDataSource")).ToList();
             foreach (var con in connectionsToRemove)
             {
                 connectionStringsSection.ConnectionStrings.Remove(con);
@@ -51,7 +52,6 @@ namespace MSTestHacks.RuntimeDataSource
             //Make sure dir exists
             if (!Directory.Exists(DATASOURCES_PATH))
                 Directory.CreateDirectory(DATASOURCES_PATH);
-
 
             //BUG: Other DLL's are not loaded into this app domain as its happening too early. We need to change this to
             //search the directory or something similar.
@@ -70,11 +70,29 @@ namespace MSTestHacks.RuntimeDataSource
                                                     .Distinct()
                                                     .ToList();
 
+            // read the exclusions from the app.config file
+            var exclusionRegEx = !string.IsNullOrEmpty(ConfigurationManager.AppSettings["ExclusionRegEx"]) ? ConfigurationManager.AppSettings["ExclusionRegEx"].ToString() : "";
+            int excludedCount = 0;
+
+            // if defined then log the regex pattern
+            if (!string.IsNullOrEmpty(exclusionRegEx))
+                Logger.WriteLine("Exclusion RegEx: {0}", exclusionRegEx);
+
             var configChanged = false;
             var totalTimeTaken = Stopwatch.StartNew();
             var totalIterationCount = 0;
             foreach (var dataSourceName in dataSourceNames)
             {
+                if (!string.IsNullOrEmpty(exclusionRegEx))
+                {
+                    if (Regex.IsMatch(dataSourceName, exclusionRegEx))
+                    {
+                        excludedCount++;
+                        Logger.WriteLine("Excluded datasource: {0}", dataSourceName);
+                        continue;
+                    }
+                }
+
                 try
                 {
                     var individualTimeTaken = Stopwatch.StartNew();
@@ -147,7 +165,7 @@ namespace MSTestHacks.RuntimeDataSource
                 ConfigurationManager.RefreshSection("microsoft.visualstudio.testtools");
             }
 
-            Logger.WriteLine("No of Assemblies Searched: {0}, No of DataSources Found: {1}, No of Iterations Created: {2}, Total Time Taken: {3}.", assembliesToSearch.Count(), dataSourceNames.Count, totalIterationCount, totalTimeTaken.Elapsed);
+            Logger.WriteLine("No of Assemblies Searched: {0}, No of DataSources Found: {1}, No of DataSources Excluded: {2}, No of Iterations Created: {3}, Total Time Taken: {4}.", assembliesToSearch.Count(), dataSourceNames.Count, excludedCount, totalIterationCount, totalTimeTaken.Elapsed);
             Logger.WriteLine("Finishing Execution");
             Logger.WriteLine("------------------");
         }
@@ -158,7 +176,7 @@ namespace MSTestHacks.RuntimeDataSource
             {
                 return assembly.GetTypes();
             }
-            catch ( ReflectionTypeLoadException ex )
+            catch (ReflectionTypeLoadException ex)
             {
                 Logger.WriteLine(ex.Source + " threw " + ex.Message + ": " + ex.LoaderExceptions.Aggregate("", (e, s) => s + e.ToString()));
                 return Enumerable.Empty<Type>();
