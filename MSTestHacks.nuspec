@@ -21,9 +21,9 @@
         </dependencies>
     </metadata>
     <files>
-        <file src="lib\net40\MSTestHacks.dll" target="lib\net40\MSTestHacks.dll" />
-        <file src="lib\net40\MSTestHacks.pdb" target="lib\net40\MSTestHacks.pdb" />
-        <file src="lib\net45\MSTestHacks.dll" target="lib\net45\MSTestHacks.dll" />
-        <file src="lib\net45\MSTestHacks.pdb" target="lib\net45\MSTestHacks.pdb" />
+        <file src="MSTestHacks\bin\Debug\net40\MSTestHacks.dll" target="lib\net40\MSTestHacks.dll" />
+        <file src="MSTestHacks\bin\Debug\net40\MSTestHacks.pdb" target="lib\net40\MSTestHacks.pdb" />
+        <file src="MSTestHacks\bin\Debug\net45\MSTestHacks.dll" target="lib\net45\MSTestHacks.dll" />
+        <file src="MSTestHacks\bin\Debug\net45\MSTestHacks.pdb" target="lib\net45\MSTestHacks.pdb" />
     </files>
 </package>
