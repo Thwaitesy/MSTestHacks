@@ -13,7 +13,7 @@
         <description>A bunch of helpers to get around the deficiencies of MSTest. Features Dynamic/Runtime DataSource's, better exception support and much much more!</description>
         <summary>A bunch of helpers to get around the deficiencies of MSTest. Features Dynamic/Runtime DataSource's, better exception support and much much more!</summary>
         <releaseNotes />
-        <copyright>Copyright 2014</copyright>
+        <copyright>Copyright 2016</copyright>
         <language>en-US</language>
         <tags>Test Testing UnitTest MSTest RowTest TestRows DataDrivenTest Extensions DataSource TestCaseSource Assert ExceptionAssert</tags>
         <dependencies>
