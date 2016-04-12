@@ -66,7 +66,7 @@ namespace MSTestHacks.Tests.Asserts
             {
                 ExceptionAssert.Throws<Exception>(() => method("some param"), x => x.Message == "This is silly");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Assert.IsTrue(ex.Message.Contains("Validator for expected exception failed."));
             }

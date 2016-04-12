@@ -59,6 +59,7 @@
     <Compile Include="Asserts\ExceptionAssertTests.cs" />
     <Compile Include="RuntimeDataSource\ComplexObjects.cs" />
     <Compile Include="RuntimeDataSource\BaseClass.cs" />
+    <Compile Include="RuntimeDataSource\Exclusions.cs" />
     <Compile Include="RuntimeDataSource\LongPathNames.cs" />
     <Compile Include="RuntimeDataSource\SharedDataSource.cs" />
     <Compile Include="RuntimeDataSource\SimpleObjects2.cs" />
