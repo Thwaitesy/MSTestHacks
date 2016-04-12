@@ -42,7 +42,7 @@ ipch/
 _ReSharper*
 
 # Nuget Packages (Using Nuget Package Restore)
-*/packages/
+packages/*/
 
 # Installshield output folder 
 [Ee]xpress
