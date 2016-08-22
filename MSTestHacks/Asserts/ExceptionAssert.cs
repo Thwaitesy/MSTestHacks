@@ -25,7 +25,9 @@ namespace Microsoft.VisualStudio.TestTools.UnitTesting
             }
             catch (Exception ex)
             {
-                Assert.IsTrue(ex is TException, "Expected exception of type " + typeof(TException) + " but type of " + ex.GetType() + " was thrown instead.");
+                string exceptionDetails=Environment.NewLine + " Actual Exception Details: " + ex;
+                var message = "Expected exception of type " + typeof(TException) + " but type of " + ex.GetType() + " was thrown instead." + exceptionDetails;
+                Assert.IsTrue(ex is TException, message);
                 return ex as TException;
             }
 
@@ -58,8 +60,9 @@ namespace Microsoft.VisualStudio.TestTools.UnitTesting
             }
             catch (Exception ex)
             {
-                Assert.IsTrue(ex is TException, "Expected exception of type " + typeof(TException) + " but type of " + ex.GetType() + " was thrown instead.");
-                Assert.AreEqual(expectedMessage, ex.Message, "Expected exception with a message of '" + expectedMessage + "', but exception with message of '" + ex.Message + "' was thrown instead.");
+                string exceptionDetails = Environment.NewLine + " Actual Exception Details: " + ex;
+                Assert.IsTrue(ex is TException, "Expected exception of type " + typeof(TException) + " but type of " + ex.GetType() + " was thrown instead." + exceptionDetails);
+                Assert.AreEqual(expectedMessage, ex.Message, "Expected exception with a message of '" + expectedMessage + "', but exception with message of '" + ex.Message + "' was thrown instead." + exceptionDetails);
                 return ex as TException;
             }
 
@@ -92,8 +95,18 @@ namespace Microsoft.VisualStudio.TestTools.UnitTesting
             }
             catch (Exception ex)
             {
-                Assert.IsTrue(ex is TException, "Expected exception of type " + typeof(TException) + " but type of " + ex.GetType() + " was thrown instead.");
-                Assert.IsTrue(validatorForException(ex as TException), "Validator for expected exception failed.");
+                string exceptionDetails = Environment.NewLine + " Actual Exception Details: " + ex;
+                Assert.IsTrue(ex is TException, "Expected exception of type " + typeof(TException) + " but type of " + ex.GetType() + " was thrown instead." + exceptionDetails);
+                var condition = false;
+                try
+                {
+                    condition = validatorForException(ex as TException);
+                }
+                catch (Exception excValidator)
+                {
+                    Assert.Fail("Exception " + excValidator +" occured during evaluation of ValidatorForException " + exceptionDetails + Environment.NewLine + " Validator Exception Details: " + excValidator);
+                }
+                Assert.IsTrue(condition, "Validator for expected exception failed." + exceptionDetails);
                 return ex as TException;
             }
 
