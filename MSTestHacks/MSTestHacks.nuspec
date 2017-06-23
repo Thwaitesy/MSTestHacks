@@ -18,14 +18,16 @@
         <tags>Test Testing UnitTest MSTest RowTest TestRows DataDrivenTest Extensions DataSource TestCaseSource Assert ExceptionAssert</tags>
         <dependencies>
             <group>
-                <dependency id="Newtonsoft.Json" version="6.0.8" />
+                <dependency id="Newtonsoft.Json" version="10.0.3" />
             </group>
         </dependencies>
     </metadata>
     <files>
+      <file src="bin\Release\NET462\MSTestHacks.dll" target="lib\net462\MSTestHacks.dll" />
+      <file src="bin\Release\NET462\MSTestHacks.pdb" target="lib\net462\MSTestHacks.pdb" />
+      <file src="bin\Release\NET461\MSTestHacks.dll" target="lib\net461\MSTestHacks.dll" />
+      <file src="bin\Release\NET461\MSTestHacks.pdb" target="lib\net461\MSTestHacks.pdb" />
       <file src="bin\Release\NET45\MSTestHacks.dll" target="lib\net45\MSTestHacks.dll" />
       <file src="bin\Release\NET45\MSTestHacks.pdb" target="lib\net45\MSTestHacks.pdb" />
-      <file src="bin\Release\NET40\MSTestHacks.dll" target="lib\net40\MSTestHacks.dll" />
-      <file src="bin\Release\NET40\MSTestHacks.pdb" target="lib\net40\MSTestHacks.pdb" />
     </files>
 </package>
